@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARtools.ai - Add New AI Tool (Admin Panel)</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="artool.jpg" alt="ARtools.ai Logo" width="40" height="40">
+                ARtools.ai
+            </a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="submit-tool.html">Submit Tool</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="add-tool.html" class="active">Add Tool (Admin)</a></li>
+                </ul>
+            </nav>
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="submit.html">Submit Tool</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="add-tool.html" class="active">Add Tool (Admin)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="submit-tool-section">
+            <div class="container">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+                <h1>Add New AI Tool <br> <span class="subtitle-small">(Admin Panel)</span></h1>
+                <p class="subtitle">Fill out the form below to add a new AI tool to the ARtools.ai directory. Ensure all information is accurate and complete.</p>
+
+                <!-- Admin Content (now always visible for simplicity, access controlled by backend later) -->
+                <div id="adminContent">
+                    <div class="submit-form-card">
+                        <form id="addToolForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name">Tool Name <span class="required-star">*</span></label>
+                                    <input type="text" id="name" name="name" placeholder="e.g., Midjourney" required maxlength="100">
+                                    <div class="char-count" data-target="name">0/100</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Category <span class="required-star">*</span></label>
+                                    <select id="category" name="category" required>
+                                        <option value="">Select a category</option>
+                                        <option value="Image Generation">Image Generation</option>
+                                        <option value="Text Generation">Text Generation</option>
+                                        <option value="Video Editing">Video Editing</option>
+                                        <option value="Audio Processing">Audio Processing</option>
+                                        <option value="Code Assistance">Code Assistance</option>
+                                        <option value="Data Analysis">Data Analysis</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Productivity">Productivity</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Research">Research</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="description">Short Description <span class="required-star">*</span></label>
+                                    <textarea id="description" name="description" rows="4" placeholder="A brief, engaging description of what the tool does." required maxlength="300"></textarea>
+                                    <div class="char-count" data-target="description">0/300</div>
+                                    <p class="help-text">Keep it concise and highlight the main benefit.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="websiteUrl">Website URL <span class="required-star">*</span></label>
+                                    <input type="url" id="websiteUrl" name="websiteUrl" placeholder="https://www.example.com" required>
+                                    <p class="help-text">Direct link to the tool's official website.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="imageUrl">Image URL <span class="required-star">*</span></label>
+                                    <input type="url" id="imageUrl" name="imageUrl" placeholder="https://www.example.com/tool-image.jpg" required>
+                                    <p class="help-text">URL to a high-quality image or logo of the tool.</p>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="features">Key Features (comma-separated)</label>
+                                    <textarea id="features" name="features" rows="3" placeholder="e.g., high-resolution output, real-time editing, API access"></textarea>
+                                    <p class="help-text">List prominent features, separated by commas.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pricingModel">Pricing Model <span class="required-star">*</span></label>
+                                    <select id="pricingModel" name="pricingModel" required>
+                                        <option value="">Select pricing</option>
+                                        <option value="Free">Free</option>
+                                        <option value="Freemium">Freemium</option>
+                                        <option value="Paid">Paid</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rating">Initial Rating (1-5)</label>
+                                    <input type="number" id="rating" name="rating" min="1" max="5" value="4">
+                                    <p class="help-text">Set an initial star rating for the tool.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="views">Initial Views</label>
+                                    <input type="number" id="views" name="views" min="0" value="0">
+                                    <p class="help-text">Set an initial view count.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="badge">Badge</label>
+                                    <select id="badge" name="badge">
+                                        <option value="">None</option>
+                                        <option value="New">New</option>
+                                        <option value="Trending">Trending</option>
+                                        <option value="Editor's Choice">Editor's Choice</option>
+                                    </select>
+                                    <p class="help-text">Highlight the tool with a special badge.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="reset" class="cancel-btn">Reset Form</button>
+                                <button type="submit" class="submit-btn">Add Tool</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <a href="index.html" class="logo">
+                    <img src="artool.jpg" alt="ARtools.ai Logo" width="40" height="40">
+                    ARtools.ai
+                </a>
+                <p>Your ultimate directory for discovering the best AI tools and resources.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools.html">AI Tools</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="submit-tool.html">Submit Your Tool</a></li>
+                    <li><a href="add-tool.html">Add Tool (Admin)</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Image Generation</a></li>
+                    <li><a href="#">Text Generation</a></li>
+                    <li><a href="#">Video Editing</a></li>
+                    <li><a href="#">Productivity</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><a href="mailto:info@artools.ai"><i class="fas fa-envelope"></i> info@artools.ai</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Pākpattan, Punjab, Pakistan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 ARtools.ai. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
