@@ -3,209 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Hub - Submit Your AI Tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>ARtools.ai - Submit Your AI Tool</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/logos/artools-ai.svg">
 </head>
 <body>
-    <!-- Header Section (reused from index.html) -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <img src="https://placehold.co/30x30/6A0DAD/ffffff?text=AI" alt="AI Tools Hub Logo">
-                <span>AI Tools Hub</span>
-            </div>
+            <a href="index.html" class="logo">
+                <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
+                ARtools.ai
+            </a>
             <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="tools.html">Tools</a></li>
                     <li><a href="submit-tool.html" class="active">Submit Tool</a></li>
                     <li><a href="about.html">About</a></li>
+                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </nav>
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
-            <button class="hamburger-menu">
+            <button class="hamburger-menu" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
+        <nav class="mobile-nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="submit-tool.html" class="active">Submit Tool</a></li>
+                <li><a href="about.html">About</a></li>
+                <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
+            </ul>
+        </nav>
     </header>
 
-    <!-- Mobile Navigation Menu -->
-    <nav class="mobile-nav-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="tools.html">Tools</a></li>
-            <li><a href="submit-tool.html" class="active">Submit Tool</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+    <main>
+        <section class="submit-tool-section">
+            <div class="container">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+                <h1>Submit Your AI Tool</h1>
+                <p class="subtitle">Want to get your innovative AI tool listed on ARtools.ai? Fill out the form below. Our team will review your submission.</p>
 
-    <!-- Submit Tool Section -->
-    <section class="submit-tool-section">
-        <div class="container">
-            <a href="tools.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Tools</a>
-            <h1>Submit Your AI Tool</h1>
-            <p class="subtitle">Share your amazing AI tool with our community of creators and innovators.</p>
+                <div class="submit-form-card">
+                    <form id="publicSubmitToolForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="submitToolName">Tool Name <span class="required-star">*</span></label>
+                                <input type="text" id="submitToolName" name="name" placeholder="e.g., GPT-4" required maxlength="100">
+                                <div class="char-count" data-target="submitToolName">0/100</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="submitToolCategory">Category <span class="required-star">*</span></label>
+                                <select id="submitToolCategory" name="category" required>
+                                    <option value="">Select a category</option>
+                                    <option value="Image Generation">Image Generation</option>
+                                    <option value="Text Generation">Text Generation</option>
+                                    <option value="Video Editing">Video Editing</option>
+                                    <option value="Audio Processing">Audio Processing</option>
+                                    <option value="Code Assistance">Code Assistance</option>
+                                    <option value="Data Analysis">Data Analysis</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Productivity">Productivity</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Research">Research</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="AI Agents/Automation">AI Agents/Automation</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
 
-            <div class="submit-form-card">
-                <form class="form-grid">
-                    <h2 class="form-section-title">Basic Information</h2>
-                    <div class="form-group">
-                        <label for="toolName">Tool Name <span class="required-star">*</span></label>
-                        <input type="text" id="toolName" placeholder="Enter the name of your AI tool" required>
-                    </div>
+                            <div class="form-group full-width">
+                                <label for="submitToolDescription">Short Description <span class="required-star">*</span></label>
+                                <textarea id="submitToolDescription" name="description" rows="4" placeholder="A brief, engaging description of what the tool does." required maxlength="300"></textarea>
+                                <div class="char-count" data-target="submitToolDescription">0/300</div>
+                                <p class="help-text">Keep it concise and highlight the main benefit.</p>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="category">Category <span class="required-star">*</span></label>
-                        <select id="category" required>
-                            <option value="">Select a category</option>
-                            <option value="writing">Writing</option>
-                            <option value="design">Design</option>
-                            <option value="productivity">Productivity</option>
-                            <option value="development">Development</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="video">Video</option>
-                            <option value="audio">Audio</option>
-                            <option value="research">Research</option>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label for="submitWebsiteUrl">Website URL <span class="required-star">*</span></label>
+                                <input type="url" id="submitWebsiteUrl" name="websiteUrl" placeholder="https://www.example.com" required>
+                                <p class="help-text">Direct link to the tool's official website.</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="submitContactEmail">Your Email (for contact) <span class="required-star">*</span></label>
+                                <input type="email" id="submitContactEmail" name="contactEmail" placeholder="your.email@example.com" required>
+                                <p class="help-text">We'll use this to contact you if we have questions.</p>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="shortDescription">Short Description <span class="required-star">*</span></label>
-                        <textarea id="shortDescription" maxlength="160" placeholder="Brief description of what your tool does (max 160 characters)" required></textarea>
-                        <div class="char-count" id="shortDescCharCount">0/160</div>
-                    </div>
+                            <div class="form-group full-width">
+                                <label for="submitToolFeatures">Key Features (optional, comma-separated)</label>
+                                <textarea id="submitToolFeatures" name="features" rows="3" placeholder="e.g., real-time collaboration, API access, free trial"></textarea>
+                                <p class="help-text">List prominent features, separated by commas.</p>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="pricingModel">Pricing Model <span class="required-star">*</span></label>
-                        <select id="pricingModel" required>
-                            <option value="">Select pricing model</option>
-                            <option value="free">Free</option>
-                            <option value="freemium">Freemium</option>
-                            <option value="paid">Paid</option>
-                            <option value="enterprise">Enterprise</option>
-                        </select>
-                    </div>
+                        </div>
 
-                    <div class="form-group full-width">
-                        <label for="detailedDescription">Detailed Description <span class="required-star">*</span></label>
-                        <textarea id="detailedDescription" placeholder="Provide a detailed description of your tool's capabilities and benefits" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="imageUrl">Image URL</label>
-                        <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
-                        <p class="help-text">Optional URL to an image representing your tool</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="websiteUrl">Website URL <span class="required-star">*</span></label>
-                        <input type="text" id="websiteUrl" placeholder="https://your-tool-website.com" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tags">Tags</label>
-                        <input type="text" id="tags" placeholder="AI, Writing, Productivity (comma-separated)">
-                        <p class="help-text">Separate tags with commas</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="keyFeatures">Key Features</label>
-                        <textarea id="keyFeatures" placeholder="List key features, one per line"></textarea>
-                        <p class="help-text">List the main features of your tool, one per line</p>
-                    </div>
-
-                    <h2 class="form-section-title">Your Information</h2>
-                    <div class="form-group">
-                        <label for="yourName">Your Name <span class="required-star">*</span></label>
-                        <input type="text" id="yourName" placeholder="Your full name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="yourEmail">Your Email <span class="required-star">*</span></label>
-                        <input type="email" id="yourEmail" placeholder="your.email@example.com" required>
-                        <p class="help-text">We'll use this to contact you about your submission</p>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="cancel-btn">Cancel</button>
-                        <button type="submit" class="submit-btn"><i class="fas fa-cloud-upload-alt"></i> Submit Tool</button>
-                    </div>
-                </form>
+                        <div class="form-actions">
+                            <button type="reset" class="cancel-btn">Reset Form</button>
+                            <button type="submit" class="submit-btn">Submit Tool Suggestion</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer Section (reused from index.html) -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-col about-col">
-                <div class="logo">
-                    <img src="https://placehold.co/30x30/6A0DAD/ffffff?text=AI" alt="AI Tools Hub Logo">
-                    <span>AI Tools Hub</span>
-                </div>
-                <p>Discover the best AI tools to supercharge your productivity, creativity, and business. Stay ahead with cutting-edge artificial intelligence applications.</p>
+            <div class="footer-col">
+                <a href="index.html" class="logo">
+                    <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
+                    ARtools.ai
+                </a>
+                <p>Your ultimate directory for discovering the best AI tools and resources.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="footer-col links-col">
+            <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Browse Tools</a></li>
-                    <li><a href="submit-tool.html">Submit Tool</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools.html">AI Tools</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="submit-tool.html">Submit Your Tool</a></li>
+                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </div>
-            <div class="footer-col categories-col">
+            <div class="footer-col">
                 <h3>Categories</h3>
                 <ul>
-                    <li><a href="#">Writing</a></li>
-                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Image Generation</a></li>
+                    <li><a href="#">Text Generation</a></li>
+                    <li><a href="#">Video Editing</a></li>
                     <li><a href="#">Productivity</a></li>
-                    <li><a href="#">Development</a></li>
                 </ul>
             </div>
-            <div class="footer-col contact-col">
+            <div class="footer-col">
                 <h3>Contact Us</h3>
                 <ul>
-                    <li><a href="#">hello@aitoolshub.com</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="mailto:info@artools.ai"><i class="fas fa-envelope"></i> info@artools.ai</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Pākpattan, Punjab, Pakistan</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 AI Tools Hub. All rights reserved.</p>
-            <p>Made with ❤️ for the AI community</p>
+            &copy; 2024 ARtools.ai. All rights reserved.
         </div>
     </footer>
 
     <script src="scripts/main.js"></script>
-    <script>
-        // Character count for short description
-        document.addEventListener('DOMContentLoaded', () => {
-            const shortDescTextarea = document.getElementById('shortDescription');
-            const shortDescCharCount = document.getElementById('shortDescCharCount');
-
-            if (shortDescTextarea && shortDescCharCount) {
-                shortDescTextarea.addEventListener('input', () => {
-                    const currentLength = shortDescTextarea.value.length;
-                    const maxLength = shortDescTextarea.getAttribute('maxlength');
-                    shortDescCharCount.textContent = `${currentLength}/${maxLength}`;
-                });
-                // Initialize on load
-                shortDescCharCount.textContent = `${shortDescTextarea.value.length}/${shortDescTextarea.getAttribute('maxlength')}`;
-            }
-        });
-    </script>
 </body>
 </html>

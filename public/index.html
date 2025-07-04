@@ -3,33 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARtools.ai</title>
-    <!-- Link to Google Fonts for Inter -->
+    <title>ARtools.ai - Discover the Best AI Tools</title>
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logos/artools-ai.svg">
 </head>
 <body>
     <!-- Header Section -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <img src="https://placehold.co/30x30/6A0DAD/ffffff?text=AI" alt="AI Tools Hub Logo">
-                <span>AI Tools Hub</span>
-            </div>
+            <a href="index.html" class="logo">
+                <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
+                <span>ARtools.ai</span>
+            </a>
             <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="tools.html">Tools</a></li>
                     <li><a href="submit.html">Submit Tool</a></li>
                     <li><a href="about.html">About</a></li>
+                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </nav>
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
-            <button class="hamburger-menu">
+            <button class="hamburger-menu" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -40,210 +42,112 @@
         <ul>
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="tools.html">Tools</a></li>
-            <li><a href="submit-tool.html">Submit Tool</a></li>
+            <li><a href="submit.html">Submit Tool</a></li>
             <li><a href="about.html">About</a></li>
+            <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Discover the Future <br> of AI Tools</h1>
-            <p>Explore our comprehensive directory of AI-powered innovations designed to supercharge your productivity, creativity, and business. Stay ahead with cutting-edge artificial intelligence applications.</p>
+            <h1>Discover the Future of Innovation with ARtools.ai</h1>
+            <p>Your ultimate directory for cutting-edge AI tools and resources. Explore, categorize, and find the perfect AI solution for your needs.</p>
             <div class="search-bar-hero">
-                <input type="text" placeholder="Search a tool or niche">
-                <button>Search Now</button>
+                <input type="text" id="heroSearchInput" placeholder="Search for AI tools, categories...">
+                <button id="heroSearchButton">Search Tools</button>
             </div>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span>1,000+</span>
-                    <p>Tools</p>
+                    <span id="toolsListedCount">0+</span>
+                    <p>AI Tools Listed</p>
                 </div>
                 <div class="stat-item">
-                    <span>50K+</span>
-                    <p>Visitors</p>
-                </div>
-                <div class="stat-item">
-                    <span>8</span>
+                    <span id="categoriesCount">0+</span>
                     <p>Categories</p>
                 </div>
                 <div class="stat-item">
-                    <span>100+</span>
-                    <p>Reviews</p>
+                    <span id="monthlyVisitorsCount">50K+</span> <!-- This will remain static, as it requires analytics -->
+                    <p>Monthly Visitors</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Editor's Choice Section -->
-    <section class="section editor-choice-section">
-        <div class="container">
+    <!-- Editor's Choice Section (Minimal, Professional) -->
+    <section class="editors-choice-clean-section">
+        <div class="ec-clean-content">
             <h2 class="section-title">Editor's Choice</h2>
-            <p class="section-subtitle">Our top recommendations for AI tools reviewed by our experts.</p>
-            <div class="editor-choice-card">
-                <div class="card-content">
-                    <h3>GitHub Copilot</h3>
-                    <p class="tool-description">Advanced AI assistant that helps developers write code faster and more efficiently by suggesting completions and entire lines of code.</p>
-                    <div class="card-tags">
-                        <span class="tag">Development</span>
-                        <span class="tag">AI</span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="view-details-btn">View Details</button>
-                        <button class="add-favorite-btn"><i class="far fa-heart"></i> Add to Favorite</button>
-                    </div>
+            <p class="section-subtitle">Handpicked by our experts, these AI tools stand out for their innovation and utility.</p>
+            <div class="ec-clean-grid">
+                <div class="ec-clean-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT Logo" class="ec-clean-logo">
+                    <h3>ChatGPT</h3>
+                    <p class="ec-clean-desc">A conversational AI developed by OpenAI, capable of understanding and generating human-like text.</p>
+                    <span class="ec-clean-badge">Editor's Choice</span>
                 </div>
-                <div class="card-image">
-                    <img src="https://placehold.co/300x200/cccccc/333333?text=GitHub+Copilot" alt="GitHub Copilot">
+                <div class="ec-clean-card">
+                    <img src="https://cdn.midjourney.com/assets/images/logo.png" alt="Midjourney Logo" class="ec-clean-logo">
+                    <h3>Midjourney</h3>
+                    <p class="ec-clean-desc">An independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.</p>
+                    <span class="ec-clean-badge">Trending</span>
+                </div>
+                <div class="ec-clean-card">
+                    <img src="https://github.githubassets.com/images/modules/site/copilot/copilot-logo.svg" alt="GitHub Copilot Logo" class="ec-clean-logo">
+                    <h3>GitHub Copilot</h3>
+                    <p class="ec-clean-desc">Your AI pair programmer that suggests code and whole functions in real-time.</p>
+                    <span class="ec-clean-badge">New</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Browse by Category Section -->
-    <section class="section browse-category-section">
+    <section class="section">
         <div class="container">
             <h2 class="section-title">Browse by Category</h2>
-            <p class="section-subtitle">Discover the AI tools you need for specific tasks and industries.</p>
-            <div class="category-grid">
+            <p class="section-subtitle">Explore a diverse range of AI tools organized by their primary functions.</p>
+            <div class="category-grid" id="homeCategoryGrid">
+                <!-- Category items will be dynamically loaded here by JavaScript -->
                 <div class="category-item">
-                    <i class="fas fa-pencil-alt"></i>
-                    <h4>Writing</h4>
-                    <span>156 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-palette"></i>
-                    <h4>Design</h4>
-                    <span>134 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-code"></i>
-                    <h4>Development</h4>
-                    <span>87 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-chart-line"></i>
-                    <h4>Marketing</h4>
-                    <span>98 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-video"></i>
-                    <h4>Video</h4>
-                    <span>45 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-headphones"></i>
-                    <h4>Audio</h4>
-                    <span>34 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-flask"></i>
-                    <h4>Research</h4>
-                    <span>78 Tools</span>
-                </div>
-                <div class="category-item">
-                    <i class="fas fa-cogs"></i>
-                    <h4>Productivity</h4>
-                    <span>114 Tools</span>
+                    <i class="fas fa-sync-alt"></i> <!-- Placeholder icon -->
+                    <h4>Loading Categories...</h4>
+                    <span>0 Tools</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Hot Right Now Section (Slider will be implemented here if multiple items) -->
+    <!-- Hot Right Now Section (Slider) -->
     <section class="section hot-right-now-section">
         <div class="container">
-            <h2 class="section-title">Hot Right Now</h2>
-            <p class="section-subtitle">Explore the most popular AI tools currently making waves.</p>
+            <h2 class="section-title">Hot Right Now 🔥</h2>
+            <p class="section-subtitle">Check out the most popular and trending AI tools gaining traction today.</p>
             <div class="slider-container">
-                <div class="slider-wrapper">
-                    <!-- Tool Card 1 -->
+                <button class="slider-btn prev-btn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-wrapper" id="hotRightNowSlider">
+                    <!-- Tool Cards will be dynamically loaded here by JavaScript -->
                     <div class="tool-card slider-item">
                         <div class="card-header">
-                            <img src="https://placehold.co/280x180/ADD8E6/000000?text=Tool+Image+1" alt="Tool Image 1">
-                            <span class="badge featured">Featured</span>
-                            <span class="badge trending">Trending</span>
+                            <img src="https://placehold.co/300x200/CCCCCC/333333?text=Loading" alt="Loading Tool">
+                            <span class="trending-badge">Trending</span>
                         </div>
                         <div class="card-body">
-                            <h4>ChatGPT</h4>
-                            <p class="category">Writing</p>
+                            <h4>Loading Tool Name</h4>
+                            <p class="category">Category</p>
                             <div class="rating">
-                                <i class="fas fa-star"></i> 4.9
+                                <i class="fas fa-star"></i> 0.0
                             </div>
-                            <p class="views"><i class="fas fa-eye"></i> 15,425 views</p>
-                            <button class="view-details-btn">View Details <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <!-- Tool Card 2 -->
-                    <div class="tool-card slider-item">
-                        <div class="card-header">
-                            <img src="https://placehold.co/280x180/90EE90/000000?text=Tool+Image+2" alt="Tool Image 2">
-                            <span class="badge featured">Featured</span>
-                        </div>
-                        <div class="card-body">
-                            <h4>Midjourney</h4>
-                            <p class="category">Design</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 4.7
-                            </div>
-                            <p class="views"><i class="fas fa-eye"></i> 8,312 views</p>
-                            <button class="view-details-btn">View Details <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <!-- Tool Card 3 -->
-                    <div class="tool-card slider-item">
-                        <div class="card-header">
-                            <img src="https://placehold.co/280x180/FFD700/000000?text=Tool+Image+3" alt="Tool Image 3">
-                            <span class="badge trending">Trending</span>
-                        </div>
-                        <div class="card-body">
-                            <h4>Notion AI</h4>
-                            <p class="category">Productivity</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 4.6
-                            </div>
-                            <p class="views"><i class="fas fa-eye"></i> 5,643 views</p>
-                            <button class="view-details-btn">View Details <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <!-- Tool Card 4 (for slider effect) -->
-                    <div class="tool-card slider-item">
-                        <div class="card-header">
-                            <img src="https://placehold.co/280x180/DDA0DD/000000?text=Tool+Image+4" alt="Tool Image 4">
-                            <span class="badge featured">Featured</span>
-                        </div>
-                        <div class="card-body">
-                            <h4>Canva AI</h4>
-                            <p class="category">Design</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 4.4
-                            </div>
-                            <p class="views"><i class="fas fa-eye"></i> 14,284 views</p>
-                            <button class="view-details-btn">View Details <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <!-- Tool Card 5 (for slider effect) -->
-                    <div class="tool-card slider-item">
-                        <div class="card-header">
-                            <img src="https://placehold.co/280x180/87CEEB/000000?text=Tool+Image+5" alt="Tool Image 5">
-                            <span class="badge trending">Trending</span>
-                        </div>
-                        <div class="card-body">
-                            <h4>Jasper AI</h4>
-                            <p class="category">Writing</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 4.3
-                            </div>
-                            <p class="views"><i class="fas fa-eye"></i> 7,294 views</p>
+                            <p class="tool-description">Loading description...</p>
+                            <p class="views"><i class="fas fa-eye"></i> 0 views</p>
                             <button class="view-details-btn">View Details <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
-                <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next-btn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
             </div>
             <div class="view-all-btn-container">
-                <button class="view-all-tools-btn">View All Tools</button>
+                <a href="tools.html" class="view-all-tools-btn">View All Tools</a>
             </div>
         </div>
     </section>
@@ -252,11 +156,12 @@
     <section class="join-revolution-section">
         <div class="container">
             <h2>Join the AI Revolution</h2>
+            <p>Subscribe to our newsletter for the latest AI tool updates, insights, and exclusive content!</p>
             <div class="email-signup">
-                <input type="email" placeholder="Enter your email address">
-                <button>Get Updates</button>
+                <input type="email" id="newsletterEmailInput" placeholder="Your email address">
+                <button id="subscribeButton">Subscribe</button>
             </div>
-            <p>No spam, just useful insights and the latest AI tool discoveries.</p>
+            <p>No spam, just valuable AI goodness.</p>
         </div>
     </section>
 
@@ -265,8 +170,8 @@
         <div class="container">
             <div class="footer-col about-col">
                 <div class="logo">
-                    <img src="https://placehold.co/30x30/6A0DAD/ffffff?text=AI" alt="AI Tools Hub Logo">
-                    <span>AI Tools Hub</span>
+                    <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
+                    <span>ARtools.ai</span>
                 </div>
                 <p>Discover the best AI tools to supercharge your productivity, creativity, and business. Stay ahead with cutting-edge artificial intelligence applications.</p>
                 <div class="social-icons">
@@ -279,10 +184,11 @@
             <div class="footer-col links-col">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Browse Tools</a></li>
-                    <li><a href="submit-tool.html">Submit Tool</a></li>
+                    <li><a href="tools.html">Browse Tools</a></li>
+                    <li><a href="submit.html">Submit Tool</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="#">Blog</a></li>
+                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </div>
             <div class="footer-col categories-col">
@@ -297,7 +203,7 @@
             <div class="footer-col contact-col">
                 <h3>Contact Us</h3>
                 <ul>
-                    <li><a href="#">hello@aitoolshub.com</a></li>
+                    <li><a href="#">hello@artools.ai</a></li>
                     <li><a href="#">Support</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
@@ -305,7 +211,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 AI Tools Hub. All rights reserved.</p>
+            <p>&copy; 2024 ARtools.ai. All rights reserved.</p>
             <p>Made with ❤️ for the AI community</p>
         </div>
     </footer>

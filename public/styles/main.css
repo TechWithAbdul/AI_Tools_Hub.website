@@ -25,6 +25,14 @@ body {
     background-color: var(--bg-light);
     color: var(--text-dark);
     line-height: 1.6;
+    background: linear-gradient(120deg, #f9fafb 0%, #f3e8ff 100%);
+    background-size: 200% 200%;
+    animation: bodyGradientMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes bodyGradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
 .container {
@@ -79,8 +87,16 @@ button {
 }
 
 .header .logo img {
-    margin-right: 0.5rem;
+    margin-right: 0.2rem !important;
     border-radius: 0.25rem;
+}
+
+.header .logo,
+.footer-col .logo,
+.logo {
+    gap: 0.2rem !important;
+    display: flex;
+    align-items: center;
 }
 
 .header .nav-menu ul {
@@ -303,6 +319,10 @@ button {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding-bottom: 2rem;
+    background: rgba(255,255,255,0.97);
+    border-radius: 1.1rem;
+    box-shadow: 0 4px 24px rgba(99,102,241,0.07);
+    margin-bottom: 2.5rem;
 }
 
 .section-title, .about-content-section h2 {
@@ -338,6 +358,11 @@ button {
     margin: 0 auto;
     align-items: center;
     transition: transform 0.3s ease;
+    background: linear-gradient(120deg, #fafbff 60%, #f3e8ff 100%);
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+    min-height: 180px;
 }
 
 .editor-choice-card:hover {
@@ -360,12 +385,18 @@ button {
     font-size: 1rem;
     color: var(--text-medium);
     margin-bottom: 1.5rem;
+    max-height: none !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    white-space: normal !important;
+    display: block !important;
 }
 
 .editor-choice-card .card-tags {
     display: flex;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Allow tags to wrap */
 }
 
 .editor-choice-card .tag {
@@ -470,120 +501,76 @@ button {
 
 /* Tool Card (used in Hot Right Now and Tools Page) */
 .tool-card {
-    background-color: var(--bg-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border-color);
+    width: 100%;
+    padding: 1.1rem 1rem;
+    font-size: 1.05rem;
+    background: var(--bg-white);
+    border-radius: 1.1rem;
+    box-shadow: 0 4px 16px rgba(168,85,247,0.13), 0 1.5px 4px rgba(99,102,241,0.09);
+    border: 2px solid #a855f7;
     display: flex;
     flex-direction: column;
-    min-width: 280px; /* Ensure consistent card width for slider */
-}
-
-.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--card-shadow);
-    border-color: var(--primary-gradient-end);
-}
-
-.tool-card .card-header {
+    align-items: flex-start;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
     position: relative;
-    width: 100%;
-    height: 180px; /* Fixed height for image consistency */
-    overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(120deg, #fafbff 60%, #f3e8ff 100%);
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+    min-height: 180px;
 }
-
+.tool-card:hover {
+    box-shadow: 0 8px 24px rgba(168,85,247,0.18), 0 2px 8px rgba(99,102,241,0.13);
+    transform: translateY(-2px) scale(1.02);
+    border-color: #6366f1;
+    background: linear-gradient(120deg, #f3e8ff 0%, #fafbff 100%);
+}
+.tool-card h4 {
+    font-size: 1.13rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+    color: #a855f7;
+    font-family: 'Inter', sans-serif;
+}
 .tool-card .card-header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.tool-card .tool-description {
+    font-size: 0.97rem;
+    color: var(--text-light);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.4;
+    max-width: 100%;
+    max-height: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     display: block;
 }
 
-.tool-card .badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: linear-gradient(to right, var(--primary-gradient-start), var(--primary-gradient-end));
-    color: white;
-    padding: 0.3rem 0.7rem;
-    border-radius: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    z-index: 10;
-}
-
-.tool-card .badge.trending {
-    right: auto;
-    left: 10px;
-    background: linear-gradient(to right, var(--secondary-gradient-start), var(--secondary-gradient-end));
-}
-
-
-.tool-card .card-body {
-    padding: 1.5rem;
-    flex-grow: 1; /* Allows body to expand */
-    display: flex;
-    flex-direction: column;
-}
-
-.tool-card .card-body h4 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-}
-
-.tool-card .card-body .category {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-}
-
-.tool-card .card-body .rating {
-    font-size: 1rem;
-    color: #f59e0b; /* Yellow star */
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.tool-card .card-body .rating i {
-    color: #f59e0b;
-}
-
-.tool-card .card-body .views {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.tool-card .card-body .view-details-btn {
-    background-color: var(--bg-light);
-    color: var(--primary-gradient-end);
-    border: 1px solid var(--border-color);
+/* Read More/Show Less toggle styles */
+.tool-description .read-more-toggle {
+    color: #a855f7;
     font-weight: 500;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    margin-top: auto; /* Pushes button to bottom */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: underline dotted;
+    font-size: 0.97rem;
+    margin-left: 0.2rem;
+    transition: color 0.18s;
 }
-
-.tool-card .card-body .view-details-btn:hover {
-    background-color: var(--primary-gradient-start);
-    color: white;
-    border-color: var(--primary-gradient-start);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.tool-description .read-more-toggle:hover {
+    color: #6366f1;
+    text-decoration: underline solid;
 }
-
+.tool-description .desc-full {
+    display: inline;
+    margin-left: 0.1rem;
+}
 
 /* Hot Right Now Section (Slider specific styles) */
 .hot-right-now-section {
@@ -592,8 +579,8 @@ button {
 
 .slider-container {
     position: relative;
-    overflow: hidden; /* Hide overflow for slider effect */
-    padding: 0 1.5rem; /* Padding for slider buttons */
+    overflow: visible !important; /* Allow cards to overflow for hover effect */
+    padding: 0 4rem; /* Padding for slider buttons */
 }
 
 .slider-wrapper {
@@ -625,6 +612,11 @@ button {
     flex-shrink: 0; /* Prevent items from shrinking */
     width: calc((100% - 3rem) / 3); /* 3 items per row on large screens, accounting for gap */
     scroll-snap-align: start; /* Snap to start of item */
+    background: linear-gradient(120deg, #fafbff 60%, #f3e8ff 100%);
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+    min-height: 180px;
 }
 
 .slider-btn {
@@ -784,7 +776,7 @@ button {
 }
 
 .footer-col .logo img {
-    margin-right: 0.5rem;
+    margin-right: 0.2rem !important;
     border-radius: 0.25rem;
 }
 
@@ -840,184 +832,154 @@ button {
 
 /* Specific styles for Tools Page */
 .tools-directory-header {
-    background-color: var(--bg-white);
-    padding: 2rem 0;
-    box-shadow: var(--box-shadow);
-    margin-bottom: 2rem;
-    text-align: center;
+    background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
+    color: #fff;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom-left-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,255,255,0.97);
+    border-radius: 1.1rem;
+    box-shadow: 0 4px 24px rgba(99,102,241,0.07);
 }
 
-.tools-directory-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-}
-
+.tools-directory-header h1,
 .tools-directory-header p {
-    font-size: 1.1rem;
-    color: var(--text-medium);
-    margin-bottom: 2rem;
-}
-
-.tools-directory-header .search-input-container {
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
+    color: #fff;
 }
 
 .tools-directory-header .search-input-container input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem; /* Left padding for icon */
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    color: var(--text-dark);
-    outline: none;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    background: #fff;
+    color: #222;
 }
 
 .tools-directory-header .search-input-container i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-light);
-}
-
-.tools-main-content {
-    display: flex;
-    gap: 2rem;
-    padding: 0 1.5rem;
-    margin-bottom: 4rem;
-}
-
-.tools-filter-sidebar {
-    flex-shrink: 0;
-    width: 280px;
-    background-color: var(--bg-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 1.5rem;
-    height: fit-content; /* Ensure sidebar doesn't expand too much */
-    border: 1px solid var(--border-color);
-}
-
-.tools-filter-sidebar h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: var(--text-dark);
-}
-
-.tools-filter-sidebar .filter-group {
-    margin-bottom: 2rem;
-}
-
-.tools-filter-sidebar .filter-group h4 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--text-medium);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.tools-filter-sidebar ul li {
-    margin-bottom: 0.75rem;
-}
-
-.tools-filter-sidebar ul li a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--text-medium);
-    font-size: 0.95rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.tools-filter-sidebar ul li a.active,
-.tools-filter-sidebar ul li a:hover {
-    background-color: var(--primary-gradient-start);
-    color: white;
-}
-
-.tools-filter-sidebar ul li a i {
-    margin-right: 0.75rem;
-    font-size: 1.1rem;
-}
-
-.tools-filter-sidebar ul li a span:last-child {
-    background-color: var(--bg-light);
-    color: var(--text-medium);
-    padding: 0.2rem 0.6rem;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.tools-filter-sidebar ul li a.active span:last-child,
-.tools-filter-sidebar ul li a:hover span:last-child {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.tools-listing-area {
-    flex-grow: 1;
-}
-
-.tools-listing-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.tools-listing-controls .showing-results {
-    font-size: 0.95rem;
-    color: var(--text-medium);
-}
-
-.tools-listing-controls .sort-by {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.tools-listing-controls .sort-by label {
-    font-size: 0.95rem;
-    color: var(--text-medium);
-    font-weight: 500;
-}
-
-.tools-listing-controls .sort-by select {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    background-color: var(--bg-white);
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    cursor: pointer;
-    outline: none;
-    appearance: none; /* Remove default arrow */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%236B7280%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1em;
+    color: #a855f7;
 }
 
 .tools-listing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
 }
 
-/* Specific styles for Submit Tool Page */
+.tool-card {
+    width: 100%;
+    padding: 1.1rem 1rem;
+    font-size: 1.05rem;
+    background: var(--bg-white);
+    border-radius: 1.1rem;
+    box-shadow: 0 4px 16px rgba(168,85,247,0.13), 0 1.5px 4px rgba(99,102,241,0.09);
+    border: 2px solid #a855f7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(120deg, #fafbff 60%, #f3e8ff 100%);
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+    min-height: 180px;
+}
+.tool-card:hover {
+    box-shadow: 0 8px 24px rgba(168,85,247,0.18), 0 2px 8px rgba(99,102,241,0.13);
+    transform: translateY(-2px) scale(1.02);
+    border-color: #6366f1;
+    background: linear-gradient(120deg, #f3e8ff 0%, #fafbff 100%);
+}
+.tool-card h4 {
+    font-size: 1.13rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+    color: #a855f7;
+    font-family: 'Inter', sans-serif;
+}
+.tool-card .card-header img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.tool-card .tool-description {
+    font-size: 0.97rem;
+    color: var(--text-light);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.4;
+    max-width: 100%;
+    max-height: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+/* --- PURPLE VISIT BUTTON --- */
+.tool-card .view-details-btn {
+    background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
+    color: #fff;
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px rgba(168,85,247,0.13);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.tool-card .view-details-btn:hover {
+    background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+    box-shadow: 0 4px 16px rgba(168,85,247,0.18);
+    transform: translateY(-1px) scale(1.04);
+}
+
+/* --- FILTER BAR STYLING --- */
+.tools-filter-sidebar {
+    width: 220px;
+    background: #f6f7fb;
+    border-radius: 1.1rem;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.5rem 1rem;
+    border: none;
+}
+.tools-filter-sidebar h3, .tools-filter-sidebar .filter-group h4 {
+    color: var(--primary-gradient-end);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+.tools-filter-sidebar ul li a i {
+    color: #a855f7;
+}
+.tools-filter-sidebar ul li a.active, .tools-filter-sidebar ul li a:hover {
+    background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
+    color: #fff;
+}
+.tools-filter-sidebar ul li a.active i, .tools-filter-sidebar ul li a:hover i {
+    color: #fff;
+}
+
+/* --- CENTER TEXT IN PURPLE SECTION --- */
+.tools-directory-header .container {
+    text-align: center;
+}
+
+/* Specific styles for Submit Tool Page and Add Tool Page */
 .submit-tool-section {
     padding: 2rem 0 4rem;
     background-color: var(--bg-light);
+    background: rgba(255,255,255,0.97);
+    border-radius: 1.1rem;
+    box-shadow: 0 4px 24px rgba(99,102,241,0.07);
+    margin-bottom: 2.5rem;
 }
 
 .submit-tool-section .container {
@@ -1046,6 +1008,15 @@ button {
     color: var(--text-dark);
 }
 
+/* Specific for Admin Add Tool page title */
+.submit-tool-section h1 .subtitle-small {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-medium);
+    margin-top: 0.5rem;
+}
+
 .submit-tool-section p.subtitle {
     font-size: 1.1rem;
     color: var(--text-medium);
@@ -1059,6 +1030,10 @@ button {
     box-shadow: var(--card-shadow);
     padding: 3rem;
     border: 1px solid var(--border-color);
+    border: 2px solid #a855f7;
+    box-shadow: 0 6px 24px rgba(168,85,247,0.09);
+    background: #fff;
+    border-radius: 1.1rem;
 }
 
 .form-grid {
@@ -1085,6 +1060,8 @@ button {
 
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="url"],
+.form-group input[type="number"],
 .form-group textarea,
 .form-group select {
     width: 100%;
@@ -1128,7 +1105,7 @@ button {
     grid-column: 1 / -1; /* Spans across all columns */
 }
 
-.form-section-title {
+.form-section-title { /* Not used in this specific form, but kept for consistency */
     grid-column: 1 / -1;
     font-size: 1.5rem;
     font-weight: 600;
@@ -1164,11 +1141,13 @@ button {
     background: var(--button-bg-gradient);
     color: white;
     font-weight: 600;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.18s;
 }
 
-.form-actions .submit-btn:hover {
-    background: var(--button-hover-bg-gradient);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+.form-actions .submit-btn:hover, .form-actions .submit-btn:focus {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 4px 16px rgba(168,85,247,0.13);
+    background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
 }
 
 /* Specific styles for About Page */
@@ -1292,6 +1271,24 @@ button {
     color: var(--primary-gradient-end);
 }
 
+/* New: Message Card for Access Denied / Info / Error */
+.message-card {
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column; /* Allow button to stack */
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    line-height: 1.4;
+}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -1352,17 +1349,20 @@ button {
     /* Tools page responsive */
     .tools-main-content {
         flex-direction: column;
-        padding: 0 1rem;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
     }
     .tools-filter-sidebar {
         width: 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 1.2rem 0.7rem;
     }
     .tools-listing-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
     }
 
-    /* Submit tool page responsive */
+    /* Submit tool page responsive and Add Tool Page responsive */
     .submit-form-card {
         padding: 2rem;
     }
@@ -1548,11 +1548,15 @@ button {
     }
     .tools-listing-grid {
         grid-template-columns: 1fr;
+        gap: 0.15rem;
     }
 
-    /* Submit tool page responsive */
+    /* Submit tool page responsive and Add Tool Page responsive */
     .submit-tool-section h1 {
         font-size: 2rem;
+    }
+    .submit-tool-section h1 .subtitle-small {
+        font-size: 1.25rem;
     }
     .submit-tool-section p.subtitle {
         font-size: 1rem;
@@ -1573,11 +1577,492 @@ button {
     .form-section-title {
         font-size: 1.25rem;
     }
+}
 
-    /* About page responsive */
-    .get-in-touch-section .contact-buttons button {
-        width: 100%;
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+@media (max-width: 600px) {
+    .tools-listing-grid {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
     }
+    .tool-card {
+        font-size: 0.91rem;
+        padding: 0.5rem 0.5rem;
+    }
+    .tool-card .card-header img {
+        width: 28px;
+        height: 28px;
+    }
+    .tool-card .card-body h4 {
+        font-size: 0.98rem;
+    }
+    /* Center and limit width of form fields */
+    .submit-form-card .form-group input,
+    .submit-form-card .form-group textarea,
+    .submit-form-card .form-group select {
+        max-width: 95vw;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        box-sizing: border-box;
+    }
+    /* Center the form card itself */
+    .submit-form-card {
+        margin-left: auto;
+        margin-right: auto;
+        width: 98vw;
+        max-width: 99vw;
+        box-sizing: border-box;
+    }
+    /* Center and limit width of the search bar in tools page */
+    .tools-directory-header .search-input-container {
+        max-width: 98vw;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+    }
+    .tools-directory-header .search-input-container input {
+        max-width: 95vw;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* --- RESTORE TOOLS PAGE LAYOUT & ENHANCE CARD SIZE --- */
+
+.tools-main-content {
+    display: flex;
+    gap: 2rem;
+    padding: 0 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.tools-filter-sidebar {
+    flex-shrink: 0;
+    width: 280px;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    height: fit-content;
+    border: 1px solid var(--border-color);
+}
+
+.tools-listing-area {
+    flex-grow: 1;
+}
+
+.tools-listing-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.tools-listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 4rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .tools-main-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    .tools-filter-sidebar {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        padding: 1.2rem 0.7rem;
+    }
+    .tools-listing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .tools-main-content {
+        padding: 0 0.2rem;
+    }
+    .tools-listing-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .tools-filter-sidebar {
+        padding: 1rem 0.5rem;
+    }
+    .tool-card {
+        padding: 0.7rem 0.2rem;
+        font-size: 0.97rem;
+    }
+    .tools-listing-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-directory-header .container {
+        padding: 0 0.2rem;
+    }
+    .tools-listing-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    .tool-card {
+        padding: 0.7rem 0.2rem;
+        font-size: 0.97rem;
+    }
+}
+
+/* ENHANCE TOOL CARD SIZE */
+.tool-card {
+    padding: 1.25rem 1.25rem;
+    font-size: 1.08rem;
+    min-height: 260px;
+}
+
+.tools-listing-grid .tool-card {
+    min-width : 400px;
+}
+
+/* --- RESTORE SEARCH BAR & CATEGORY MENU COLORS --- */
+.tools-directory-header .search-input-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.tools-directory-header .search-input-container input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem; /* Left padding for icon */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    color: var(--text-dark);
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    background-color: var(--bg-white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tools-directory-header .search-input-container input:focus {
+    border-color: var(--primary-gradient-end);
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+}
+
+.tools-directory-header .search-input-container i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.tools-filter-sidebar ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tools-filter-sidebar ul li a.active,
+.tools-filter-sidebar ul li a:hover {
+    background-color: var(--primary-gradient-start);
+    color: white;
+}
+
+.tools-filter-sidebar ul li a i {
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+    color: var(--primary-gradient-end);
+}
+
+.tools-filter-sidebar ul li a span:last-child {
+    background-color: var(--bg-light);
+    color: var(--text-medium);
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.tools-filter-sidebar ul li a.active span:last-child,
+.tools-filter-sidebar ul li a:hover span:last-child {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Remove blue border and use only shadow for tool cards in the slider */
+.slider-wrapper .tool-card,
+.slider-item .tool-card {
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(99,102,241,0.13), 0 1.5px 4px rgba(99,102,241,0.09), 0 8px 24px rgba(168,85,247,0.10);
+}
+
+/* --- SLIDER RESPONSIVENESS FIXES --- */
+@media (max-width: 700px) {
+    .slider-container {
+        padding: 0 1rem !important; /* Gentle side padding */
+        overflow: visible !important;
+    }
+    .slider-wrapper {
+        gap: 0 !important;
+        justify-content: center;
+    }
+    .slider-item {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        display: flex;
+        justify-content: center;
+    }
+    .slider-wrapper .tool-card,
+    .slider-item .tool-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 auto;
+        box-sizing: border-box;
+        /* Remove shadow and border for mobile slider cards */
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 1rem !important;
+        background: #fff !important;
+        min-height: 260px !important;
+        height: auto !important;
+        padding: 1.2rem 0.7rem !important;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .slider-wrapper .tool-card .card-header img,
+    .slider-item .tool-card .card-header img {
+        width: 72px !important;
+        height: 72px !important;
+        margin-bottom: 1rem !important;
+    }
+    .slider-wrapper .tool-card .tool-description,
+    .slider-item .tool-card .tool-description {
+        max-height: none !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        font-size: 1.05rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1rem !important;
+        display: block !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-container {
+        padding: 0 0.2rem;
+    }
+    .slider-wrapper {
+        gap: 0.3rem;
+    }
+    .slider-item .tool-card,
+    .slider-wrapper .tool-card {
+        padding: 0.6rem 0.2rem;
+        font-size: 0.93rem;
+    }
+}
+
+/* --- UNIVERSAL MOBILE RESPONSIVENESS & CENTERING FIXES --- */
+@media (max-width: 700px) {
+    .container,
+    .tools-directory-header,
+    .submit-form-card,
+    .tools-listing-area,
+    .tools-main-content,
+    .tools-listing-grid,
+    .slider-container,
+    .slider-wrapper,
+    .slider-item,
+    .tool-card {
+        max-width: 100vw !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    /* Remove min-width for tool cards in grid/slider */
+    .tools-listing-grid .tool-card,
+    .slider-wrapper .tool-card,
+    .slider-item .tool-card {
+        min-width: 0 !important;
+    }
+    /* Prevent grid from causing overflow */
+    .tools-listing-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+    /* Prevent slider from causing overflow */
+  
+    .slider-item {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100vw !important;
+    }
+}
+
+/* Editor's Choice Clean Section Styles */
+.editors-choice-clean-section {
+  background: #fff;
+  border-radius: 1.1rem;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+  max-width: 1100px;
+  margin: 2.5rem auto 2rem auto;
+  padding: 2.5rem 1.2rem 1.2rem 1.2rem;
+}
+.ec-clean-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ec-clean-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.ec-clean-card {
+  background: #fafbff;
+  border-radius: 0.9rem;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+  padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+  min-width: 220px;
+  max-width: 300px;
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1px solid #e5e7eb;
+}
+.ec-clean-card:hover {
+  box-shadow: 0 6px 24px rgba(99,102,241,0.13);
+  transform: translateY(-3px) scale(1.03);
+  border-color: #a855f7;
+}
+.ec-clean-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.7rem;
+  border-radius: 0.5rem;
+}
+.ec-clean-card h3 {
+  font-size: 1.13rem;
+  font-weight: 700;
+  color: #a855f7;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+.ec-clean-desc {
+  font-size: 0.97rem;
+  color: #4b5563;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.ec-clean-badge {
+  background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 0.7rem;
+  margin-top: 0.2rem;
+  box-shadow: 0 2px 8px rgba(168,85,247,0.13);
+}
+@media (max-width: 900px) {
+  .ec-clean-grid {
+    gap: 1rem;
+  }
+  .ec-clean-card {
+    min-width: 180px;
+    max-width: 260px;
+    padding: 1rem 0.7rem;
+  }
+}
+@media (max-width: 700px) {
+  .editors-choice-clean-section {
+    padding: 1.2rem 0.2rem 0.7rem 0.2rem;
+  }
+  .ec-clean-grid {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .ec-clean-card {
+    width: 98vw;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}
+
+/* --- TRENDING TOOLS SLIDER ENHANCEMENTS --- */
+.slider-wrapper .tool-card {
+  background: linear-gradient(120deg, #fafbff 60%, #f3e8ff 100%);
+  position: relative;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.13), 0 1.5px 4px rgba(168,85,247,0.09);
+  transition: box-shadow 0.25s, transform 0.22s, background 0.22s, opacity 0.5s;
+  opacity: 0;
+  animation: fadeInSliderCard 0.7s forwards;
+}
+@keyframes fadeInSliderCard {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.slider-wrapper .tool-card:hover {
+  box-shadow: 0 10px 32px rgba(99,102,241,0.18), 0 2px 8px rgba(168,85,247,0.13);
+  transform: scale(1.045) translateY(-4px);
+  background: linear-gradient(120deg, #f3e8ff 0%, #fafbff 100%);
+  z-index: 10;
+}
+.slider-wrapper .tool-card .trending-badge {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.22rem 0.8rem;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px rgba(168,85,247,0.13);
+  letter-spacing: 0.02em;
+  z-index: 2;
+}
+.slider-btn {
+  background: linear-gradient(90deg, #a855f7 0%, #6366f1 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.13);
+  border: none !important;
+  border-radius: 50% !important;
+  opacity: 0.92;
+  transition: background 0.2s, opacity 0.2s, box-shadow 0.2s;
+}
+.slider-btn:hover {
+  opacity: 1 !important;
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%) !important;
+  box-shadow: 0 4px 16px rgba(168,85,247,0.18);
 }

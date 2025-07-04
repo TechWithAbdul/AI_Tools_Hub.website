@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Hub - About Us</title>
+    <title>ARtools.ai - About Us</title>
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
-   
+    <link rel="icon" type="image/svg+xml" href="assets/logos/artools-ai.svg">
 </head>
 <body>
-    <!-- Header Section (reused from index.html) -->
+    <!-- Header Section -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <img src="https://placehold.co/30x30/6A0DAD/ffffff?text=AI" alt="AI Tools Hub Logo">
-                <span>AI Tools Hub</span>
-            </div>
+            <a href="index.html" class="logo">
+                <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
+                <span>ARtools.ai</span>
+            </a>
             <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="tools.html">Tools</a></li>
                     <li><a href="submit.html">Submit Tool</a></li>
                     <li><a href="about.html" class="active">About</a></li>
+                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </nav>
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
-            <button class="hamburger-menu">
+            <button class="hamburger-menu" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -39,196 +42,137 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="tools.html">Tools</a></li>
-            <li><a href="submit-tool.html">Submit Tool</a></li>
+            <li><a href="submit.html">Submit Tool</a></li>
             <li><a href="about.html" class="active">About</a></li>
+            <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
         </ul>
     </nav>
 
     <!-- About Hero Section -->
     <section class="about-hero-section">
         <div class="container">
-            <h1>About AI Tools Hub</h1>
-            <p>At AI Tools Hub, we are passionate about the transformative power of artificial intelligence. Our mission is to be the leading resource for discovering, exploring, and understanding the latest advancements in AI tools.</p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span>1,000+</span>
-                    <p>Tools Listed</p>
-                </div>
-                <div class="stat-item">
-                    <span>50K+</span>
-                    <p>Monthly Visitors</p>
-                </div>
-                <div class="stat-item">
-                    <span>8</span>
-                    <p>Key Categories</p>
-                </div>
-                <div class="stat-item">
-                    <span>100+</span>
-                    <p>Expert Reviews</p>
-                </div>
-            </div>
+            <h1>About ARtools.ai</h1>
+            <p>Your trusted guide in the evolving world of Artificial Intelligence. We're dedicated to simplifying discovery and empowering innovation.</p>
         </div>
     </section>
 
     <!-- Our Story Section -->
-    <section class="about-content-section">
+    <section class="section about-content-section">
         <div class="container">
-            <h2>Our Story</h2>
-            <p class="subtitle">From a simple idea to a thriving community, our journey has been driven by a passion for AI.</p>
+            <h2 class="section-title">Our Story</h2>
             <div class="our-story-content">
                 <div class="text-content">
-                    <p>AI Tools Hub was founded on the belief that navigating the rapidly expanding world of artificial intelligence tools shouldn't be overwhelming. Our founders, a team of tech enthusiasts and AI researchers, recognized the need for a centralized, curated platform where individuals and businesses could easily find, compare, and leverage the best AI solutions available.</p>
-                    <p>We started as a small blog, sharing our discoveries and insights. As the AI landscape evolved, so did we. Today, AI Tools Hub has grown into a comprehensive directory, a trusted review platform, and a vibrant community hub. We pride ourselves on our meticulous research, unbiased reviews, and commitment to showcasing tools that genuinely enhance productivity and creativity.</p>
-                    <p>Our journey is far from over. We continue to adapt, innovate, and expand our offerings, always with the goal of empowering our users to harness the full potential of AI. Join us as we build the future, one intelligent tool at a time.</p>
+                    <p>Founded with a passion for innovation and a vision for a smarter future, ARtools.ai began as a simple idea: to create a centralized, user-friendly platform for discovering the vast and rapidly expanding landscape of AI tools. We recognized the challenge individuals and businesses faced in navigating the sheer volume of new AI applications emerging daily.</p>
+                    <p>Our journey started with a small team of AI enthusiasts and web developers committed to curating, categorizing, and reviewing these tools. From humble beginnings, we've grown into a comprehensive directory, continually updating our listings to ensure our users have access to the most relevant and effective AI solutions available.</p>
+                    <p>We believe that by making AI tools more accessible and understandable, we can empower more people to leverage the power of artificial intelligence, fostering creativity, efficiency, and groundbreaking advancements across all industries.</p>
                 </div>
                 <div class="image-content">
-                    <img src="https://placehold.co/450x300/a855f7/ffffff?text=Our+Story" alt="Our Story Image">
+                    <img src="about.jpg" alt="Our Story Image">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Mission & Vision Section -->
-    <section class="about-content-section gray-bg">
+    <section class="section about-content-section gray-bg">
         <div class="container">
-            <h2>Mission & Vision</h2>
-            <p class="subtitle">Our guiding principles that shape every decision we make at AI Tools Hub.</p>
+            <h2 class="section-title">Our Mission & Vision</h2>
+            <p class="section-subtitle">Guiding you through the AI landscape with clarity and purpose.</p>
             <div class="grid-2-col">
                 <div class="value-card">
                     <i class="fas fa-bullseye"></i>
                     <h3>Our Mission</h3>
-                    <p>To simplify the discovery and adoption of AI tools by providing a trusted, comprehensive, and user-friendly directory for individuals and businesses worldwide.</p>
+                    <p>To be the leading and most trusted directory for AI tools, providing an intuitive platform for discovery, comparison, and informed decision-making.</p>
                 </div>
                 <div class="value-card">
-                    <i class="fas fa-lightbulb"></i>
+                    <i class="fas fa-eye"></i>
                     <h3>Our Vision</h3>
-                    <p>To be the leading global platform that empowers everyone to innovate, create, and achieve more with the power of artificial intelligence.</p>
+                    <p>To empower every individual and organization to harness the transformative power of AI, fostering innovation and shaping a future where AI enhances human potential.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Our Values Section -->
-    <section class="about-content-section">
+    <section class="section about-content-section">
         <div class="container">
-            <h2>Our Values</h2>
-            <p class="subtitle">The core principles that drive our team and community forward.</p>
+            <h2 class="section-title">Our Values</h2>
+            <p class="section-subtitle">The principles that guide everything we do.</p>
             <div class="grid-3-col">
                 <div class="value-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Collaboration</h3>
-                    <p>We believe in the power of collective intelligence and foster an environment where ideas are shared and growth is mutual.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-star"></i>
-                    <h3>Excellence</h3>
-                    <p>We strive for the highest quality in everything we do, from our content to our user experience.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-flask"></i>
+                    <i class="fas fa-lightbulb"></i>
                     <h3>Innovation</h3>
-                    <p>We embrace change and continuously seek new ways to deliver value and stay at the forefront of AI.</p>
+                    <p>We embrace and promote the latest advancements in AI, constantly seeking out cutting-edge tools.</p>
                 </div>
                 <div class="value-card">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Trust</h3>
-                    <p>We are committed to transparency, honesty, and providing unbiased information to build lasting trust with our community.</p>
+                    <p>We are committed to providing unbiased, accurate, and reliable information to our community.</p>
                 </div>
                 <div class="value-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Community First</h3>
-                    <p>Our users are at the heart of what we do. We listen, adapt, and build for their success and empowerment.</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Community</h3>
+                    <p>We foster a collaborative environment where users can share insights and contribute to collective knowledge.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Quality</h3>
+                    <p>We ensure that only high-quality, impactful AI tools are featured in our directory.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-compass"></i>
+                    <h3>Guidance</h3>
+                    <p>We strive to simplify the complex world of AI, making it accessible to everyone, regardless of expertise.</p>
                 </div>
                 <div class="value-card">
                     <i class="fas fa-rocket"></i>
-                    <h3>Continuous Improvement</h3>
-                    <p>We are always learning, refining, and evolving to provide the best possible platform and resources.</p>
+                    <h3>Empowerment</h3>
+                    <p>We aim to equip our users with the tools they need to achieve their goals and push boundaries.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Meet Our Team Section -->
-    <section class="about-content-section gray-bg">
+    <!-- Meet Our Team (Placeholder - content not generated in this session) -->
+    <section class="section about-content-section gray-bg" style="display: none;">
         <div class="container">
-            <h2>Meet Our Team</h2>
-            <p class="subtitle">The dedicated individuals behind AI Tools Hub, passionate about artificial intelligence.</p>
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">Passionate individuals dedicated to bringing you the best AI tools.</p>
             <div class="grid-3-col">
+                <!-- Example Team Member Card -->
                 <div class="team-member-card">
-                    <img src="https://placehold.co/150x150/6A0DAD/ffffff?text=TM1" alt="Team Member 1">
-                    <h3>Jane Doe</h3>
-                    <p class="title">Co-Founder & CEO</p>
+                    <img src="https://placehold.co/150x150/e0e7ff/6366f1?text=JD" alt="Team Member">
+                    <h3>John Doe</h3>
+                    <p class="title">Founder & CEO</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="team-member-card">
-                    <img src="https://placehold.co/150x150/6A0DAD/ffffff?text=TM2" alt="Team Member 2">
-                    <h3>John Smith</h3>
-                    <p class="title">Chief Technology Officer</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="team-member-card">
-                    <img src="https://placehold.co/150x150/6A0DAD/ffffff?text=TM3" alt="Team Member 3">
-                    <h3>Emily White</h3>
-                    <p class="title">Head of Content</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
+                <!-- More team members -->
             </div>
         </div>
     </section>
 
-    <!-- Awards & Recognition Section -->
-    <section class="about-content-section">
-        <div class="container">
-            <h2>Awards & Recognition</h2>
-            <p class="subtitle">Acknowledging our efforts in building a valuable resource for the AI community.</p>
-            <div class="grid-3-col">
-                <div class="value-card">
-                    <i class="fas fa-trophy"></i>
-                    <h3>Tech Innovator Award 2023</h3>
-                    <p>Recognized for outstanding innovation in AI resource platforms.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-award"></i>
-                    <h3>Best AI Directory 2023</h3>
-                    <p>Awarded by Global AI Insights for comprehensive listings and user experience.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-medal"></i>
-                    <h3>Community Choice Award</h3>
-                    <p>Voted by our users as the top platform for AI tool discovery.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Get In Touch Section (reused from join revolution aesthetically) -->
+    <!-- Get In Touch Section -->
     <section class="get-in-touch-section">
         <div class="container">
             <h2>Get In Touch</h2>
+            <p>Have questions, feedback, or want to collaborate? We'd love to hear from you!</p>
             <div class="contact-buttons">
-                <button><i class="fas fa-envelope"></i> Contact Support</button>
-                <button><i class="fab fa-twitter"></i> Follow us on Twitter</button>
-                <button><i class="fab fa-linkedin"></i> Connect on LinkedIn</button>
+                <button onclick="window.location.href='mailto:info@artools.ai'"><i class="fas fa-envelope"></i> Email Us</button>
+                <button onclick="window.open('https://twitter.com/artoolshq', '_blank')"><i class="fab fa-twitter"></i> Follow on Twitter</button>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section (reused from index.html) -->
+    <!-- Footer Section -->
     <footer class="footer">
         <div class="container">
             <div class="footer-col about-col">
                 <div class="logo">
-                    <img src="https://placehold.co/30x30/6A0DAD/ffffff?text=AI" alt="AI Tools Hub Logo">
-                    <span>AI Tools Hub</span>
+                    <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
+                    <span>ARtools.ai</span>
                 </div>
                 <p>Discover the best AI tools to supercharge your productivity, creativity, and business. Stay ahead with cutting-edge artificial intelligence applications.</p>
                 <div class="social-icons">
@@ -241,10 +185,10 @@
             <div class="footer-col links-col">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Browse Tools</a></li>
-                    <li><a href="submit-tool.html">Submit Tool</a></li>
+                    <li><a href="tools.html">Browse Tools</a></li>
+                    <li><a href="submit.html">Submit Tool</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </div>
             <div class="footer-col categories-col">
@@ -259,7 +203,7 @@
             <div class="footer-col contact-col">
                 <h3>Contact Us</h3>
                 <ul>
-                    <li><a href="#">hello@aitoolshub.com</a></li>
+                    <li><a href="#">hello@artools.ai</a></li>
                     <li><a href="#">Support</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
@@ -267,7 +211,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 AI Tools Hub. All rights reserved.</p>
+            <p>&copy; 2024 ARtools.ai. All rights reserved.</p>
             <p>Made with ❤️ for the AI community</p>
         </div>
     </footer>
