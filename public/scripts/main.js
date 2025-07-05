@@ -76,46 +76,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to render a single tool card
     function renderToolCard(tool, options = {}) {
-        // options: { simple: true } for home page slider
-        const shortDescription = tool.description ? tool.description.slice(0, 35).replace(/\s+$/, '') + (tool.description.length > 35 ? '…' : '') : '';
-        if (options.simple) {
-            // Restore original, larger, detailed card for home page slider
-            const badgeHtml = tool.badge ? `<span class="badge ${tool.badge.toLowerCase().replace("'", "").replace(" ", "-")}">${tool.badge}</span>` : '';
-            const ratingStars = tool.rating ? '<i class="fas fa-star" style="color:#fbbf24;"></i>'.repeat(Math.round(tool.rating)) : '';
-            const ratingHtml = tool.rating ? `<span class="rating-stars">${ratingStars}</span> <span class="rating-count">(${tool.rating ? tool.rating.toFixed(1) : '0'})</span>` : '';
-            return `
-                <div class="tool-card slider-item" style="min-width:340px;max-width:380px;">
-                    <div class="card-header">
-                        <img src="${tool.imageUrl}" alt="${tool.name}" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';" loading="lazy">
-                        ${badgeHtml}
-                    </div>
-                    <div class="card-body">
-                        <h4 style="font-size:1.18rem;">${tool.name}</h4>
-                        <div class="rating" style="margin-bottom:0.3rem;">${ratingHtml}</div>
-                        <p class="tool-description" style="font-size:1.01rem;line-height:1.5;max-height:3.2em;">${shortDescription}</p>
-                        <button class="view-details-btn" onclick="window.open('${tool.websiteUrl}', '_blank')">View Details <i class="fas fa-arrow-right" style="color:#6366f1;"></i></button>
-                    </div>
-                </div>
-            `;
-        }
-        // For tools page: concise info, no hashtags, no extra icons
-        const featuresText = tool.features ? tool.features.join(', ') : '';
-        const ratingStars = tool.rating ? '<i class="fas fa-star" style="color:#fbbf24;"></i>'.repeat(Math.round(tool.rating)) : '';
-        const ratingHtml = tool.rating ? `<span class="rating-stars">${ratingStars}</span> <span class="rating-count">(${tool.rating ? tool.rating.toFixed(1) : '0'})</span>` : '';
+        // Card badges
+        const trendingBadge = tool.badge ? `<span class="trending-badge" style="position:absolute;top:0.8rem;right:0.8rem;z-index:2;background:linear-gradient(135deg,#f59e0b 0%,#f97316 100%);color:#fff;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:0.6rem;box-shadow:0 2px 8px rgba(245,158,11,0.3);">${tool.badge}</span>` : '';
+        const ratingBadge = tool.rating ? `<span class="rating-badge" style="position:absolute;top:0.8rem;left:0.8rem;z-index:2;background:#fff;color:#222;padding:0.2rem 0.6rem;border-radius:0.6rem;font-weight:600;font-size:0.85rem;box-shadow:0 2px 6px rgba(0,0,0,0.07);"><i class='fas fa-star' style='color:#fbbf24;'></i> ${tool.rating.toFixed(1)}</span>` : '';
+        const categoryBadge = tool.category ? `<span class="category-badge" style="color:#6366f1;font-weight:600;font-size:0.85rem;">${tool.category}</span>` : '';
+        const pricingBadge = tool.pricingModel ? `<span class="pricing-badge" style="background:#d1fae5;color:#059669;font-size:0.85rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:0.6rem;margin-left:0.4rem;">${tool.pricingModel}</span>` : '';
+        const usersHtml = tool.views ? `<span class="users-count" style="color:#6366f1;font-size:0.85rem;"><i class="fas fa-users"></i> ${tool.views.toLocaleString()} users</span>` : '';
+        const detailLink = `<a href="${tool.websiteUrl}" class="view-details-btn" style="color:#6366f1;font-weight:600;float:right;font-size:0.85rem;">View Details <i class="fas fa-arrow-right"></i></a>`;
+        
+        // Card image
+        const imageHtml = `<div style="position:relative;width:100%;height:120px;overflow:hidden;border-top-left-radius:0.9rem;border-top-right-radius:0.9rem;background:#f3f4f6;">
+            <img src="${tool.imageUrl}" alt="${tool.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.onerror=null;this.src='https://placehold.co/320x120/cccccc/333333?text=No+Image';" loading="lazy">
+            ${trendingBadge}${ratingBadge}
+        </div>`;
+        
+        // Card content
         return `
-            <div class="tool-card slider-item">
-                <div class="card-header">
-                    <img src="${tool.imageUrl}" alt="${tool.name}" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h4>${tool.name}</h4>
-                    <div style="font-size:0.93rem;color:var(--text-light);margin-bottom:0.2rem;">${tool.pricingModel ? tool.pricingModel : ''}</div>
-                    <div style="font-size:0.93rem;color:var(--text-light);margin-bottom:0.2rem;">${featuresText}${featuresText && tool.category ? ' · ' : ''}${tool.category ? tool.category : ''}</div>
-                    <div class="rating" style="margin-bottom:0.3rem;">${ratingHtml}</div>
-                    <p class="tool-description">${shortDescription}</p>
-                    <button class="view-details-btn" onclick="window.open('${tool.websiteUrl}', '_blank')">Visit <i class="fas fa-external-link-alt" style="color:#6366f1;"></i></button>
+        <div class="tool-card slider-item" style="background:#fff;border-radius:0.9rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);padding:0;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;border:1px solid #e5e7eb;">
+            ${imageHtml}
+            <div style="padding:1rem 1rem 0.7rem 1rem;flex:1;display:flex;flex-direction:column;gap:0.3rem;">
+                <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.2rem;">${categoryBadge}${pricingBadge}</div>
+                <div style="font-size:1rem;font-weight:700;color:#1f2937;margin-bottom:0.1rem;">${tool.name}</div>
+                <div style="color:#4b5563;font-size:0.9rem;margin-bottom:0.2rem;line-height:1.4;max-height:2.8em;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${tool.description}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;margin-bottom:0.2rem;">
+                    ${usersHtml}
+                    ${detailLink}
                 </div>
             </div>
+        </div>
         `;
     }
 
@@ -149,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroSearchInput = document.getElementById('heroSearchInput');
         const heroSearchButton = document.getElementById('heroSearchButton');
         const editorChoiceCard = document.getElementById('editorChoiceCard');
-        const hotRightNowSlider = document.getElementById('hotRightNowSlider');
+        const hotRightNowGrid = document.getElementById('hotRightNowGrid');
         const toolsListedCount = document.getElementById('toolsListedCount');
         const categoriesCount = document.getElementById('categoriesCount');
         const homeCategoryGrid = document.getElementById('homeCategoryGrid');
@@ -170,48 +158,130 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Render Editor's Choice tool
-        async function renderEditorChoice() {
-            allTools = await fetchToolsData(); // Ensure allTools is populated
-            const editorTool = allTools.find(tool => tool.badge === "Editor's Choice");
-
-            if (editorTool && editorChoiceCard) {
-                editorChoiceCard.innerHTML = `
-                    <div class="card-image">
-                        <img src="${editorTool.imageUrl}" alt="${editorTool.name}" onerror="this.onerror=null;this.src='https://placehold.co/450x300/CCCCCC/333333?text=Image+Not+Found';" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <h3>${editorTool.name}</h3>
-                        <p class="tool-description">${editorTool.description}</p>
-                        <div class="card-tags">
-                            ${editorTool.features.map(feature => `<span class="tag">${feature}</span>`).join('')}
-                            <span class="tag">${editorTool.category}</span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="view-details-btn" onclick="window.open('${editorTool.websiteUrl}', '_blank')"><i class="fas fa-eye"></i> View Details</button>
-                            <button class="add-favorite-btn" onclick="alert('Added ${editorTool.name} to favorites! (Requires user account functionality)')"><i class="fas fa-heart"></i> Add to Favorites</button>
-                        </div>
-                    </div>
-                `;
-            } else if (editorChoiceCard) {
-                editorChoiceCard.innerHTML = `
-                    <div class="message-card" style="background-color: #fffbe2; border-color: #fde047; color: #a16207; width: 100%; margin: 1rem 0;">
-                        <p><i class="fas fa-info-circle"></i> No Editor's Choice tool found yet! Add one via admin panel and set its badge.</p>
-                    </div>
-                `;
+        // Render Editor's Choice tools as a single card, swapping content with slide animation and swipe/drag support
+        async function renderEditorChoiceSingleCard() {
+            allTools = await fetchToolsData();
+            const editorTools = allTools.filter(tool => ["Editor's Choice", "Trending", "New"].includes(tool.badge)).slice(0, 4);
+            const cardContainer = document.getElementById('editorChoiceCard');
+            const dots = document.getElementById('editorChoiceDots');
+            if (!cardContainer || !dots) return;
+            if (editorTools.length === 0) {
+                cardContainer.innerHTML = `<div class='message-card' style='background:#fffbe2;border-color:#fde047;color:#a16207;width:100%;margin:1rem 0;padding:2rem 1rem;text-align:center;border-radius:1rem;'>No Editor's Choice tools found yet!</div>`;
+                dots.innerHTML = '';
+                return;
             }
+            let current = 0;
+            let animating = false;
+            function renderCard(idx, direction = 0) {
+                // direction: 0 = instant, 1 = right, -1 = left
+                const tool = editorTools[idx];
+                const cardHtml = `
+                <div class="editor-choice-slide editor-choice-flip-anim" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:820px;background:linear-gradient(135deg,#fafbff 0%,#f3e8ff 100%);border-radius:1.5rem;box-shadow:0 8px 32px rgba(99,102,241,0.12);padding:2.2rem 2.5rem;gap:2.5rem;border:2px solid #e5e7eb;">
+                    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0;">
+                        <div style="margin-bottom:0.7rem;">
+                            <span class='tag' style='background:#eef2ff;color:#6366f1;font-size:1rem;font-weight:600;padding:0.4rem 1.1rem;border-radius:0.7rem;margin-right:0.7rem;box-shadow:0 2px 8px rgba(99,102,241,0.1);'>${tool.category || ''}</span>
+                            <span class='trending-badge' style='background:linear-gradient(135deg,#f59e0b 0%,#f97316 100%);color:#fff;font-size:0.8rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:0.8rem;box-shadow:0 4px 12px rgba(245,158,11,0.3);animation:pulse 2s infinite;'>🔥 Featured</span>
+                        </div>
+                        <h3 style="font-size:2rem;font-weight:800;margin-bottom:0.7rem;color:#1f2937;background:linear-gradient(135deg,#a855f7 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${tool.name}</h3>
+                        <p style="font-size:1.08rem;color:#4b5563;margin-bottom:1.1rem;line-height:1.6;">${tool.description}</p>
+                        <div style="display:flex;align-items:center;gap:1.1rem;margin-bottom:1.1rem;flex-wrap:wrap;">
+                            <span style="color:#fbbf24;font-size:1.1rem;font-weight:700;"><i class='fas fa-star'></i> ${tool.rating ? tool.rating.toFixed(1) : '4.5'}</span>
+                            <span style="color:#6b7280;font-size:1rem;"><i class='fas fa-users'></i> ${tool.views ? tool.views.toLocaleString() + ' users' : '1K+ users'}</span>
+                            ${tool.pricingModel ? `<span class='tag' style='background:#d1fae5;color:#059669;font-size:1rem;font-weight:600;padding:0.3rem 1rem;border-radius:0.7rem;box-shadow:0 2px 8px rgba(5,150,105,0.1);'>${tool.pricingModel}</span>` : ''}
+                        </div>
+                        <div style="display:flex;gap:1.1rem;flex-wrap:wrap;">
+                            <a href="${tool.websiteUrl}" class="view-details-btn" style="background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);color:#fff;font-weight:600;padding:0.8rem 2rem;border-radius:0.7rem;font-size:1.1rem;box-shadow:0 4px 16px rgba(99,102,241,0.2);transition:all 0.3s ease;">Learn More <i class="fas fa-arrow-right"></i></a>
+                            <a href="${tool.websiteUrl}" class="add-favorite-btn" style="background:#fff;color:#8b5cf6;border:2px solid #8b5cf6;font-weight:600;padding:0.8rem 2rem;border-radius:0.7rem;font-size:1.1rem;transition:all 0.3s ease;">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div style="flex:1;display:flex;align-items:center;justify-content:center;min-width:0;">
+                        <img src="${tool.imageUrl}" alt="${tool.name}" style="width:320px;height:200px;object-fit:cover;border-radius:1.1rem;box-shadow:0 8px 24px rgba(99,102,241,0.15);border:4px solid #eef2ff;margin-left:1.5rem;background:#f3f4f6;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                </div>
+                `;
+                cardContainer.innerHTML = cardHtml;
+                const card = cardContainer.firstElementChild;
+                setTimeout(() => {
+                    card.classList.add('editor-choice-flip-in');
+                }, 10);
+                Array.from(dots.children).forEach((dot, i) => {
+                    dot.style.background = i === idx ? '#6366f1' : '#e5e7eb';
+                });
+            }
+            function animateTo(next, direction) {
+                if (animating || next === current) return;
+                animating = true;
+                const oldCard = cardContainer.firstElementChild;
+                if (oldCard) {
+                    oldCard.classList.remove('editor-choice-flip-in');
+                    oldCard.classList.add('editor-choice-flip-out');
+                }
+                setTimeout(() => {
+                    renderCard(next, direction);
+                    animating = false;
+                }, 500);
+                current = next;
+            }
+            // Render dots
+            dots.innerHTML = editorTools.map((_, i) => `<span class="carousel-dot" data-index="${i}" style="width:13px;height:13px;border-radius:50%;background:#e5e7eb;display:inline-block;cursor:pointer;"></span>`).join('');
+            renderCard(current, 0);
+            // Auto-advance
+            let interval = setInterval(() => {
+                animateTo((current + 1) % editorTools.length, 1);
+            }, 4000);
+            // Dots click
+            Array.from(dots.children).forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    if (i === current) return;
+                    clearInterval(interval);
+                    animateTo(i, i > current ? 1 : -1);
+                    interval = setInterval(() => {
+                        animateTo((current + 1) % editorTools.length, 1);
+                    }, 4000);
+                });
+            });
+            // Touch/drag/mouse swipe
+            let startX = 0, dx = 0, dragging = false;
+            cardContainer.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dragging = true; });
+            cardContainer.addEventListener('touchmove', e => { if (!dragging) return; dx = e.touches[0].clientX - startX; });
+            cardContainer.addEventListener('touchend', () => {
+                if (Math.abs(dx) > 50) {
+                    clearInterval(interval);
+                    if (dx < 0) animateTo((current + 1) % editorTools.length, 1);
+                    else animateTo((current - 1 + editorTools.length) % editorTools.length, -1);
+                    interval = setInterval(() => {
+                        animateTo((current + 1) % editorTools.length, 1);
+                    }, 4000);
+                }
+                dragging = false; dx = 0;
+            });
+            // Mouse drag for desktop
+            let mouseDown = false, mouseStartX = 0, mouseDx = 0;
+            cardContainer.addEventListener('mousedown', e => { mouseDown = true; mouseStartX = e.clientX; });
+            cardContainer.addEventListener('mousemove', e => { if (!mouseDown) return; mouseDx = e.clientX - mouseStartX; });
+            cardContainer.addEventListener('mouseup', () => {
+                if (Math.abs(mouseDx) > 50) {
+                    clearInterval(interval);
+                    if (mouseDx < 0) animateTo((current + 1) % editorTools.length, 1);
+                    else animateTo((current - 1 + editorTools.length) % editorTools.length, -1);
+                    interval = setInterval(() => {
+                        animateTo((current + 1) % editorTools.length, 1);
+                    }, 4000);
+                }
+                mouseDown = false; mouseDx = 0;
+            });
+            cardContainer.addEventListener('mouseleave', () => { mouseDown = false; mouseDx = 0; });
         }
 
-        // Render Hot Right Now tools for slider
-        async function renderHotRightNowSlider() {
+        // Render Hot Right Now tools for grid (not slider)
+        async function renderHotRightNowGrid() {
             allTools = await fetchToolsData(); // Ensure allTools is populated
-            const hotTools = [...allTools].sort((a, b) => b.views - a.views).slice(0, 9); // Get top 9 most viewed
+            const hotTools = [...allTools].sort((a, b) => b.views - a.views).slice(0, 6); // Get top 6 most viewed
 
-            if (hotTools.length > 0 && hotRightNowSlider) {
-                hotRightNowSlider.innerHTML = hotTools.map(tool => renderToolCard(tool, { simple: true })).join('');
-                startAutoSlide(); // Re-initiate auto-slide after content load
-            } else if (hotRightNowSlider) {
-                hotRightNowSlider.innerHTML = `
+            if (hotTools.length > 0 && hotRightNowGrid) {
+                hotRightNowGrid.innerHTML = hotTools.map(tool => `<div class='hot-grid-item'>${renderToolCard(tool, { simple: true })}</div>`).join('');
+            } else if (hotRightNowGrid) {
+                hotRightNowGrid.innerHTML = `
                     <div class="message-card" style="background-color: #e0f2fe; border-color: #60a5fa; color: #1e40af; width: 100%; margin: 1rem 0;">
                         <p><i class="fas fa-info-circle"></i> No trending tools to display yet. Add some tools with views!</p>
                     </div>
@@ -230,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Populate Home Page Category Grid
+        // Populate Home Page Category Grid with smaller cards
         function populateHomeCategories() {
             if (!homeCategoryGrid) return;
             const categoriesMap = {};
@@ -239,11 +309,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const categoryHtml = Object.entries(categoriesMap).map(([category, count]) => `
-                <div class="category-item">
-                    <i class="fas fa-${getCategoryIcon(category)}"></i>
-                    <h4>${category}</h4>
-                    <span>${count} Tools</span>
+                <a href="tools.html?category=${encodeURIComponent(category)}" class="category-link">
+                <div class="category-item" style="padding:1.2rem 0.8rem;text-align:center;">
+                    <i class="fas fa-${getCategoryIcon(category)}" style="font-size:1.8rem;color:#6366f1;margin-bottom:0.7rem;"></i>
+                    <h4 style="font-size:1rem;font-weight:600;margin-bottom:0.3rem;color:#1f2937;">${category}</h4>
+                    <span style="font-size:0.8rem;color:#6b7280;">${count} Tools</span>
                 </div>
+                </a>
             `).join('');
 
             if (Object.keys(categoriesMap).length > 0) {
@@ -255,52 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             }
-        }
-
-
-        // Slider functionality for hot-right-now-section
-        const sliderWrapper = document.querySelector('.slider-wrapper');
-        const prevBtn = document.querySelector('.slider-btn.prev-btn');
-        const nextBtn = document.querySelector('.slider-btn.next-btn');
-        let autoSlideInterval;
-
-        if (sliderWrapper && prevBtn && nextBtn) {
-            let scrollAmount = 0;
-            const getCardWidth = () => {
-                const firstCard = sliderWrapper.querySelector('.slider-item');
-                return firstCard ? firstCard.offsetWidth + parseFloat(getComputedStyle(sliderWrapper).gap) : 300 + 24;
-            };
-
-            const slideNext = () => {
-                scrollAmount += getCardWidth();
-                if (scrollAmount >= sliderWrapper.scrollWidth - sliderWrapper.clientWidth + 1) {
-                    scrollAmount = 0; // Loop back to start
-                }
-                sliderWrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-            };
-
-            const slidePrev = () => {
-                scrollAmount -= getCardWidth();
-                if (scrollAmount < 0) {
-                    scrollAmount = sliderWrapper.scrollWidth - sliderWrapper.clientWidth; // Loop to end
-                }
-                sliderWrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-            };
-
-            nextBtn.addEventListener('click', () => { slideNext(); stopAutoSlide(); startAutoSlide(); });
-            prevBtn.addEventListener('click', () => { slidePrev(); stopAutoSlide(); startAutoSlide(); });
-
-            const startAutoSlide = () => {
-                stopAutoSlide();
-                autoSlideInterval = setInterval(slideNext, 2000); // 2 seconds
-            };
-
-            const stopAutoSlide = () => {
-                clearInterval(autoSlideInterval);
-            };
-
-            sliderWrapper.addEventListener('mouseenter', stopAutoSlide);
-            sliderWrapper.addEventListener('mouseleave', startAutoSlide);
         }
 
         // Newsletter Subscription
@@ -336,13 +362,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-
         // Initialize Home Page Content
         fetchToolsData().then(data => {
             allTools = data; // Assign fetched data to global allTools
             updateHeroStats();
-            renderEditorChoice();
-            renderHotRightNowSlider();
+            renderEditorChoiceSingleCard();
+            renderHotRightNowGrid();
             populateHomeCategories();
         });
     }
@@ -367,12 +392,16 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         let currentSort = 'highestRated';
 
-        // Read search query from URL if coming from index.html
+        // Read search and category query from URL if coming from index.html
         const urlParams = new URLSearchParams(window.location.search);
         const initialSearchQuery = urlParams.get('search');
+        const initialCategoryQuery = urlParams.get('category');
         if (initialSearchQuery && toolSearchInput) {
             currentFilters.searchText = decodeURIComponent(initialSearchQuery);
             toolSearchInput.value = currentFilters.searchText; // Populate search input
+        }
+        if (initialCategoryQuery) {
+            currentFilters.category = decodeURIComponent(initialCategoryQuery);
         }
 
         // Function to update the tools listing grid based on filters and sort

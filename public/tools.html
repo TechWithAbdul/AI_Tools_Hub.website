@@ -46,27 +46,25 @@
         </ul>
     </nav>
 
-    <!-- Tools Directory Header -->
+    <!-- Tools Directory Header (Reference Style) -->
     <section class="tools-directory-header">
         <div class="container">
             <h1>AI Tools Directory</h1>
-            <p id="totalToolsCount">Discover 0 AI tools to transform your workflow.</p>
+            <p id="totalToolsCount">Discover AI tools to transform your workflow</p>
             <div class="search-input-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="toolSearchInput" placeholder="Search tools by name or description...">
+                <input type="text" id="toolSearchInput" placeholder="Search tools...">
             </div>
         </div>
     </section>
 
-    <!-- Main Content Area - Filters and Tool Listing -->
+    <!-- Main Content Area - Filters and Tool Listing (Reference Style) -->
     <section class="tools-main-content container">
         <aside class="tools-filter-sidebar">
-            <h3>Filters</h3>
             <div class="filter-group">
                 <h4>Categories</h4>
                 <ul id="categoryFilterList">
-                    <!-- Categories will be dynamically loaded here by JavaScript -->
-                    <li><a href="#" data-category="All" class="active"><i class="fas fa-th-large"></i> All Categories <span id="allCategoryCount">(0)</span></a></li>
+                    <li><a href="#" data-category="All" class="active"><i class="fas fa-th-large"></i> All Categories <span id="allCategoryCount" class="badge">(0)</span></a></li>
                 </ul>
             </div>
             <div class="filter-group">
@@ -76,6 +74,7 @@
                     <li><a href="#" data-pricing="Free">Free</a></li>
                     <li><a href="#" data-pricing="Freemium">Freemium</a></li>
                     <li><a href="#" data-pricing="Paid">Paid</a></li>
+                    <li><a href="#" data-pricing="Enterprise">Enterprise</a></li>
                 </ul>
             </div>
         </aside>
@@ -84,11 +83,11 @@
             <div class="tools-listing-controls">
                 <span class="showing-results" id="showingResultsText">Showing 0 of 0 tools</span>
                 <div class="sort-by">
-                    <label for="sortOrder">Sort By:</label>
+                    <label for="sortOrder"> </label>
                     <select id="sortOrder">
                         <option value="highestRated">Highest Rated</option>
                         <option value="mostPopular">Most Popular</option>
-                        <option value="newest">Newest (by ID, placeholder)</option>
+                        <option value="newest">Newest</option>
                         <option value="alphabetical">Alphabetical (A-Z)</option>
                     </select>
                 </div>

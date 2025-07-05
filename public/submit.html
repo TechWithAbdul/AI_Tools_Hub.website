@@ -13,16 +13,15 @@
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
-                ARtools.ai
+                <img src="assets/logos/artools-ai.svg" alt="AI Tools Hub Logo" width="40" height="40">
+                <span>AI Tools Hub</span>
             </a>
             <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="tools.html">Tools</a></li>
-                    <li><a href="submit-tool.html" class="active">Submit Tool</a></li>
+                    <li><a href="submit.html" class="active">Submit Tool</a></li>
                     <li><a href="about.html">About</a></li>
-                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </nav>
             <div class="search-icon">
@@ -32,137 +31,158 @@
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <nav class="mobile-nav-menu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="submit-tool.html" class="active">Submit Tool</a></li>
-                <li><a href="about.html">About</a></li>
-                <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
-            </ul>
-        </nav>
     </header>
-
+    <nav class="mobile-nav-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="submit.html" class="active">Submit Tool</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
     <main>
         <section class="submit-tool-section">
             <div class="container">
-                <a href="index.html" class="back-link">
-                    <i class="fas fa-arrow-left"></i> Back to Home
-                </a>
-                <h1>Submit Your AI Tool</h1>
-                <p class="subtitle">Want to get your innovative AI tool listed on ARtools.ai? Fill out the form below. Our team will review your submission.</p>
-
-                <div class="submit-form-card">
+                <a href="tools.html" class="back-link" style="display:inline-block;margin-bottom:1.2rem;color:#6366f1;font-size:1.01rem;"><i class="fas fa-arrow-left"></i> Back to Tools</a>
+                <h1 style="font-size:2.2rem;font-weight:700;margin-bottom:0.5rem;">Submit Your AI Tool</h1>
+                <p class="subtitle" style="font-size:1.1rem;color:#6b7280;margin-bottom:2.2rem;">Share your amazing AI tool with our community of creators and innovators.</p>
+                <div class="submit-form-card" style="max-width:900px;margin:0 auto 2.5rem auto;padding:2.5rem 2rem 2rem 2rem;background:#fff;border-radius:1.1rem;box-shadow:0 4px 24px rgba(99,102,241,0.07);">
                     <form id="publicSubmitToolForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="submitToolName">Tool Name <span class="required-star">*</span></label>
-                                <input type="text" id="submitToolName" name="name" placeholder="e.g., GPT-4" required maxlength="100">
-                                <div class="char-count" data-target="submitToolName">0/100</div>
+                        <div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+                            <div>
+                                <h3 style="font-size:1.13rem;font-weight:600;margin-bottom:1.2rem;">Basic Information</h3>
+                                <div class="form-group">
+                                    <label for="submitToolName">Tool Name *</label>
+                                    <input type="text" id="submitToolName" name="name" placeholder="Enter the name of your AI tool" required maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitShortDescription">Short Description *</label>
+                                    <input type="text" id="submitShortDescription" name="shortDescription" placeholder="Brief description of what your tool does (max 160 characters)" required maxlength="160">
+                                    <div class="char-count" data-target="submitShortDescription">0/160</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitDetailedDescription">Detailed Description *</label>
+                                    <textarea id="submitDetailedDescription" name="detailedDescription" rows="4" placeholder="Provide a detailed description of your tool's capabilities and benefits" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitWebsiteUrl">Website URL *</label>
+                                    <input type="url" id="submitWebsiteUrl" name="websiteUrl" placeholder="https://your-tool-website.com" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="submitToolCategory">Category <span class="required-star">*</span></label>
-                                <select id="submitToolCategory" name="category" required>
-                                    <option value="">Select a category</option>
-                                    <option value="Image Generation">Image Generation</option>
-                                    <option value="Text Generation">Text Generation</option>
-                                    <option value="Video Editing">Video Editing</option>
-                                    <option value="Audio Processing">Audio Processing</option>
-                                    <option value="Code Assistance">Code Assistance</option>
-                                    <option value="Data Analysis">Data Analysis</option>
-                                    <option value="Marketing">Marketing</option>
-                                    <option value="Productivity">Productivity</option>
-                                    <option value="Education">Education</option>
-                                    <option value="Research">Research</option>
-                                    <option value="Healthcare">Healthcare</option>
-                                    <option value="AI Agents/Automation">AI Agents/Automation</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                            <div>
+                                <h3 style="font-size:1.13rem;font-weight:600;margin-bottom:1.2rem;">Classification & Media</h3>
+                                <div class="form-group">
+                                    <label for="submitToolCategory">Category *</label>
+                                    <select id="submitToolCategory" name="category" required>
+                                        <option value="">Select a category</option>
+                                        <option value="Writing">Writing</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Productivity">Productivity</option>
+                                        <option value="Development">Development</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Video">Video</option>
+                                        <option value="Audio">Audio</option>
+                                        <option value="Research">Research</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitPricingModel">Pricing Model *</label>
+                                    <select id="submitPricingModel" name="pricingModel" required>
+                                        <option value="">Select pricing model</option>
+                                        <option value="Free">Free</option>
+                                        <option value="Freemium">Freemium</option>
+                                        <option value="Paid">Paid</option>
+                                        <option value="Enterprise">Enterprise</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitImageUrl">Image URL</label>
+                                    <input type="url" id="submitImageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+                                    <span class="help-text">Optional: URL to an image representing your tool</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitTags">Tags</label>
+                                    <input type="text" id="submitTags" name="tags" placeholder="AI, Writing, Productivity (comma-separated)">
+                                    <span class="help-text">Separate tags with commas</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitKeyFeatures">Key Features</label>
+                                    <textarea id="submitKeyFeatures" name="features" rows="3" placeholder="List key features, one per line"></textarea>
+                                    <span class="help-text">List the main features of your tool, one per line</span>
+                                </div>
                             </div>
-
-                            <div class="form-group full-width">
-                                <label for="submitToolDescription">Short Description <span class="required-star">*</span></label>
-                                <textarea id="submitToolDescription" name="description" rows="4" placeholder="A brief, engaging description of what the tool does." required maxlength="300"></textarea>
-                                <div class="char-count" data-target="submitToolDescription">0/300</div>
-                                <p class="help-text">Keep it concise and highlight the main benefit.</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="submitWebsiteUrl">Website URL <span class="required-star">*</span></label>
-                                <input type="url" id="submitWebsiteUrl" name="websiteUrl" placeholder="https://www.example.com" required>
-                                <p class="help-text">Direct link to the tool's official website.</p>
-                            </div>
-                            <div class="form-group">
-                                <label for="submitContactEmail">Your Email (for contact) <span class="required-star">*</span></label>
-                                <input type="email" id="submitContactEmail" name="contactEmail" placeholder="your.email@example.com" required>
-                                <p class="help-text">We'll use this to contact you if we have questions.</p>
-                            </div>
-
-                            <div class="form-group full-width">
-                                <label for="submitToolFeatures">Key Features (optional, comma-separated)</label>
-                                <textarea id="submitToolFeatures" name="features" rows="3" placeholder="e.g., real-time collaboration, API access, free trial"></textarea>
-                                <p class="help-text">List prominent features, separated by commas.</p>
-                            </div>
-
                         </div>
-
-                        <div class="form-actions">
-                            <button type="reset" class="cancel-btn">Reset Form</button>
-                            <button type="submit" class="submit-btn">Submit Tool Suggestion</button>
+                        <div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;">
+                            <div>
+                                <h3 style="font-size:1.13rem;font-weight:600;margin-bottom:1.2rem;">Your Information</h3>
+                                <div class="form-group">
+                                    <label for="submitYourName">Your Name *</label>
+                                    <input type="text" id="submitYourName" name="yourName" placeholder="Your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="submitYourEmail">Your Email *</label>
+                                    <input type="email" id="submitYourEmail" name="yourEmail" placeholder="your.email@example.com" required>
+                                    <span class="help-text">We'll use this to contact you about your submission</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions" style="display:flex;justify-content:flex-end;gap:1.2rem;margin-top:2.2rem;">
+                            <button type="reset" class="cancel-btn" style="background:#f3f4f6;color:#4b5563;border-radius:0.7rem;padding:0.7rem 2.2rem;font-weight:600;font-size:1.01rem;border:none;">Cancel</button>
+                            <button type="submit" class="submit-btn" style="background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);color:#fff;border-radius:0.7rem;padding:0.7rem 2.2rem;font-weight:600;font-size:1.01rem;border:none;box-shadow:0 2px 8px rgba(99,102,241,0.07);">Submit Tool</button>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
     </main>
-
     <footer class="footer">
-        <div class="container">
-            <div class="footer-col">
-                <a href="index.html" class="logo">
-                    <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
-                    ARtools.ai
-                </a>
-                <p>Your ultimate directory for discovering the best AI tools and resources.</p>
+        <div class="container" style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between; align-items: flex-start;">
+            <div class="footer-col about-col" style="flex:1 1 260px; min-width:220px;">
+                <div class="logo">
+                    <img src="assets/logos/artools-ai.svg" alt="AI Tools Hub Logo" width="40" height="40">
+                    <span>AI Tools Hub</span>
+                </div>
+                <p>Discover the best AI tools to supercharge your productivity, creativity, and business. Stay ahead with cutting-edge artificial intelligence applications.</p>
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-col">
+            <div class="footer-col links-col" style="flex:1 1 180px; min-width:160px;">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="tools.html">AI Tools</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="submit-tool.html">Submit Your Tool</a></li>
-                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
+                    <li><a href="tools.html">Browse Tools</a></li>
+                    <li><a href="submit.html">Submit Tool</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Blog</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+            <div class="footer-col categories-col" style="flex:1 1 180px; min-width:160px;">
                 <h3>Categories</h3>
                 <ul>
-                    <li><a href="#">Image Generation</a></li>
-                    <li><a href="#">Text Generation</a></li>
-                    <li><a href="#">Video Editing</a></li>
+                    <li><a href="#">Writing</a></li>
+                    <li><a href="#">Design</a></li>
                     <li><a href="#">Productivity</a></li>
+                    <li><a href="#">Development</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h3>Contact Us</h3>
+            <div class="footer-col contact-col" style="flex:1 1 180px; min-width:160px;">
+                <h3>Contact</h3>
                 <ul>
-                    <li><a href="mailto:info@artools.ai"><i class="fas fa-envelope"></i> info@artools.ai</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Pākpattan, Punjab, Pakistan</a></li>
+                    <li><a href="#">hello@artools.ai</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2024 ARtools.ai. All rights reserved.
+            <p>&copy; 2024 AI Tools Hub. All rights reserved.</p>
+            <p>Made with <span style="color:#ec4899;">&#10084;</span> for the AI community</p>
         </div>
     </footer>
-
     <script src="scripts/main.js"></script>
 </body>
 </html>

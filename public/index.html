@@ -16,8 +16,8 @@
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
-                <span>ARtools.ai</span>
+                <img src="assets/logos/artools-ai.svg" alt="AI Tools Hub Logo" width="40" height="40">
+                <span>AI Tools Hub</span>
             </a>
             <nav class="nav-menu">
                 <ul>
@@ -28,9 +28,6 @@
                     <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </nav>
-            <div class="search-icon">
-                <i class="fas fa-search"></i>
-            </div>
             <button class="hamburger-menu" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
@@ -51,100 +48,103 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Discover the Future of Innovation with ARtools.ai</h1>
-            <p>Your ultimate directory for cutting-edge AI tools and resources. Explore, categorize, and find the perfect AI solution for your needs.</p>
+            <h1><span style="color:#8b5cf6;">Discover the Future</span><br><span style="color:#1f2937;">of AI Tools</span></h1>
+            <p>Explore the world's largest directory of AI tools. Find the perfect solution to supercharge your productivity, creativity, and business growth.</p>
             <div class="search-bar-hero">
-                <input type="text" id="heroSearchInput" placeholder="Search for AI tools, categories...">
-                <button id="heroSearchButton">Search Tools</button>
+                <input type="text" id="heroSearchInput" placeholder="Search AI tools...">
+                <button id="heroSearchButton">Search</button>
             </div>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <span id="toolsListedCount">0+</span>
-                    <p>AI Tools Listed</p>
+                    <span id="toolsListedCount">1,000+</span>
+                    <p>AI Tools</p>
                 </div>
                 <div class="stat-item">
-                    <span id="categoriesCount">0+</span>
+                    <span id="monthlyVisitorsCount">50K+</span>
+                    <p>Happy Users</p>
+                </div>
+                <div class="stat-item">
+                    <span id="categoriesCount">8</span>
                     <p>Categories</p>
-                </div>
-                <div class="stat-item">
-                    <span id="monthlyVisitorsCount">50K+</span> <!-- This will remain static, as it requires analytics -->
-                    <p>Monthly Visitors</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Editor's Choice Section (Minimal, Professional) -->
-    <section class="editors-choice-clean-section">
-        <div class="ec-clean-content">
-            <h2 class="section-title">Editor's Choice</h2>
-            <p class="section-subtitle">Handpicked by our experts, these AI tools stand out for their innovation and utility.</p>
-            <div class="ec-clean-grid">
-                <div class="ec-clean-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT Logo" class="ec-clean-logo">
-                    <h3>ChatGPT</h3>
-                    <p class="ec-clean-desc">A conversational AI developed by OpenAI, capable of understanding and generating human-like text.</p>
-                    <span class="ec-clean-badge">Editor's Choice</span>
-                </div>
-                <div class="ec-clean-card">
-                    <img src="https://cdn.midjourney.com/assets/images/logo.png" alt="Midjourney Logo" class="ec-clean-logo">
-                    <h3>Midjourney</h3>
-                    <p class="ec-clean-desc">An independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.</p>
-                    <span class="ec-clean-badge">Trending</span>
-                </div>
-                <div class="ec-clean-card">
-                    <img src="https://github.githubassets.com/images/modules/site/copilot/copilot-logo.svg" alt="GitHub Copilot Logo" class="ec-clean-logo">
-                    <h3>GitHub Copilot</h3>
-                    <p class="ec-clean-desc">Your AI pair programmer that suggests code and whole functions in real-time.</p>
-                    <span class="ec-clean-badge">New</span>
-                </div>
+    <!-- Editor's Choice Section (Single Card, Professional Style) -->
+    <section class="editor-choice-section" style="padding:3rem 0 2rem 0;">
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;">
+                <span class="tag" style="background:#eef2ff;color:#6366f1;font-size:1rem;font-weight:600;padding:0.4rem 1.1rem;border-radius:0.7rem;margin-right:0.7rem;"><i class="fas fa-magic"></i> Featured Tools</span>
             </div>
+            <h2 class="section-title" style="font-size:2.5rem;">Editor's Choice</h2>
+            <p class="section-subtitle" style="font-size:1.13rem;">Handpicked AI tools that are transforming industries and empowering creators worldwide.</p>
+            <div id="editorChoiceCard" style="display:flex;justify-content:center;align-items:center;width:100%;max-width:820px;margin:2.5rem auto 1.5rem auto;"></div>
+            <div class="carousel-dots" id="editorChoiceDots" style="display:flex;justify-content:center;gap:0.7rem;margin-top:1.2rem;"></div>
         </div>
     </section>
 
     <!-- Browse by Category Section -->
-    <section class="section">
+    <section class="section" style="padding:2.5rem 0 2rem 0;">
         <div class="container">
             <h2 class="section-title">Browse by Category</h2>
             <p class="section-subtitle">Explore a diverse range of AI tools organized by their primary functions.</p>
-            <div class="category-grid" id="homeCategoryGrid">
+            <div class="category-grid" id="homeCategoryGrid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;">
                 <!-- Category items will be dynamically loaded here by JavaScript -->
-                <div class="category-item">
-                    <i class="fas fa-sync-alt"></i> <!-- Placeholder icon -->
-                    <h4>Loading Categories...</h4>
-                    <span>0 Tools</span>
+                <div class="category-item" style="padding:1.2rem 0.8rem;">
+                    <i class="fas fa-sync-alt" style="font-size:1.8rem;"></i> <!-- Placeholder icon -->
+                    <h4 style="font-size:1rem;">Loading Categories...</h4>
+                    <span style="font-size:0.8rem;">0 Tools</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Hot Right Now Section (Slider) -->
-    <section class="section hot-right-now-section">
+    <!-- Hot Right Now Section (Grid Style, No Slider) -->
+    <section class="section hot-right-now-section" style="padding:2.5rem 0 2rem 0;">
         <div class="container">
             <h2 class="section-title">Hot Right Now 🔥</h2>
-            <p class="section-subtitle">Check out the most popular and trending AI tools gaining traction today.</p>
-            <div class="slider-container">
-                <button class="slider-btn prev-btn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-                <div class="slider-wrapper" id="hotRightNowSlider">
-                    <!-- Tool Cards will be dynamically loaded here by JavaScript -->
-                    <div class="tool-card slider-item">
-                        <div class="card-header">
-                            <img src="https://placehold.co/300x200/CCCCCC/333333?text=Loading" alt="Loading Tool">
-                            <span class="trending-badge">Trending</span>
-                        </div>
-                        <div class="card-body">
-                            <h4>Loading Tool Name</h4>
-                            <p class="category">Category</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> 0.0
-                            </div>
-                            <p class="tool-description">Loading description...</p>
-                            <p class="views"><i class="fas fa-eye"></i> 0 views</p>
-                            <button class="view-details-btn">View Details <i class="fas fa-arrow-right"></i></button>
-                        </div>
+            <p class="section-subtitle">The most popular AI tools that are gaining traction in the community.</p>
+            <div class="tools-listing-grid" id="hotRightNowGrid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+                <!-- Example Card 1 -->
+                <div class="tool-card" style="background:#fafbff;border-radius:0.9rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);border:1.5px solid #e5e7eb;padding:1.3rem 1.1rem 1.1rem 1.1rem;display:flex;flex-direction:column;align-items:flex-start;transition:box-shadow 0.2s,transform 0.2s;">
+                    <div class="card-header" style="display:flex;flex-direction:column;align-items:center;margin-bottom:0.7rem;width:100%;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT Logo" style="width:48px;height:48px;object-fit:contain;margin-bottom:0.7rem;border-radius:0.5rem;">
+                        <span class="trending-badge" style="position:absolute;top:0.9rem;right:0.9rem;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);color:#fff;font-size:0.82rem;font-weight:600;padding:0.22rem 0.8rem;border-radius:0.7rem;">Trending</span>
+                    </div>
+                    <div class="card-body" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.4rem;width:100%;">
+                        <h4 style="font-size:1.13rem;font-weight:700;margin:0 0 0.2rem 0;color:#a855f7;">ChatGPT</h4>
+                        <div class="rating" style="margin-bottom:0.3rem;"><i class="fas fa-star" style="color:#fbbf24;"></i> 4.8</div>
+                        <p class="tool-description" style="font-size:0.97rem;color:#4b5563;margin:0 0 0.25rem 0;line-height:1.4;">Advanced conversational AI that can help with writing, analysis, coding, and creative tasks.</p>
+                        <button class="view-details-btn" style="align-self:flex-end;margin-top:auto;">View Details <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
-                <button class="slider-btn next-btn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+                <!-- Example Card 2 -->
+                <div class="tool-card" style="background:#fafbff;border-radius:0.9rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);border:1.5px solid #e5e7eb;padding:1.3rem 1.1rem 1.1rem 1.1rem;display:flex;flex-direction:column;align-items:flex-start;transition:box-shadow 0.2s,transform 0.2s;">
+                    <div class="card-header" style="display:flex;flex-direction:column;align-items:center;margin-bottom:0.7rem;width:100%;">
+                        <img src="https://www.notion.so/cdn-cgi/image/format=auto,width=256,quality=100/front-static/pages/product/notion-ai-icon.png" alt="Notion AI Logo" style="width:48px;height:48px;object-fit:contain;margin-bottom:0.7rem;border-radius:0.5rem;">
+                        <span class="trending-badge" style="position:absolute;top:0.9rem;right:0.9rem;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);color:#fff;font-size:0.82rem;font-weight:600;padding:0.22rem 0.8rem;border-radius:0.7rem;">Trending</span>
+                    </div>
+                    <div class="card-body" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.4rem;width:100%;">
+                        <h4 style="font-size:1.13rem;font-weight:700;margin:0 0 0.2rem 0;color:#a855f7;">Notion AI</h4>
+                        <div class="rating" style="margin-bottom:0.3rem;"><i class="fas fa-star" style="color:#fbbf24;"></i> 4.6</div>
+                        <p class="tool-description" style="font-size:0.97rem;color:#4b5563;margin:0 0 0.25rem 0;line-height:1.4;">Intelligent writing assistant integrated into Notion workspace for enhanced productivity.</p>
+                        <button class="view-details-btn" style="align-self:flex-end;margin-top:auto;">View Details <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <!-- Example Card 3 -->
+                <div class="tool-card" style="background:#fafbff;border-radius:0.9rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);border:1.5px solid #e5e7eb;padding:1.3rem 1.1rem 1.1rem 1.1rem;display:flex;flex-direction:column;align-items:flex-start;transition:box-shadow 0.2s,transform 0.2s;">
+                    <div class="card-header" style="display:flex;flex-direction:column;align-items:center;margin-bottom:0.7rem;width:100%;">
+                        <img src="https://static.canva.com/static/images/favicon.ico" alt="Canva AI Logo" style="width:48px;height:48px;object-fit:contain;margin-bottom:0.7rem;border-radius:0.5rem;">
+                        <span class="trending-badge" style="position:absolute;top:0.9rem;right:0.9rem;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);color:#fff;font-size:0.82rem;font-weight:600;padding:0.22rem 0.8rem;border-radius:0.7rem;">Trending</span>
+                    </div>
+                    <div class="card-body" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.4rem;width:100%;">
+                        <h4 style="font-size:1.13rem;font-weight:700;margin:0 0 0.2rem 0;color:#a855f7;">Canva AI</h4>
+                        <div class="rating" style="margin-bottom:0.3rem;"><i class="fas fa-star" style="color:#fbbf24;"></i> 4.6</div>
+                        <p class="tool-description" style="font-size:0.97rem;color:#4b5563;margin:0 0 0.25rem 0;line-height:1.4;">Smart design platform with AI-powered features for creating professional graphics and more.</p>
+                        <button class="view-details-btn" style="align-self:flex-end;margin-top:auto;">View Details <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
             </div>
             <div class="view-all-btn-container">
                 <a href="tools.html" class="view-all-tools-btn">View All Tools</a>
@@ -152,26 +152,25 @@
         </div>
     </section>
 
-    <!-- Join the Revolution Section -->
-    <section class="join-revolution-section">
+    <!-- Join the AI Revolution Section (Reference Style) -->
+    <section class="join-revolution-section" style="margin:2rem auto;">
         <div class="container">
             <h2>Join the AI Revolution</h2>
-            <p>Subscribe to our newsletter for the latest AI tool updates, insights, and exclusive content!</p>
-            <div class="email-signup">
-                <input type="email" id="newsletterEmailInput" placeholder="Your email address">
-                <button id="subscribeButton">Subscribe</button>
+            <p>Don't miss out on the latest AI tools and innovations. Get notified when new tools are added to our directory.</p>
+            <div style="display:flex;justify-content:center;gap:1.2rem;margin:2rem 0 1.5rem 0;flex-wrap:wrap;">
+                <a href="submit.html" class="view-all-tools-btn" style="background:#fff;color:#8b5cf6;border:2px solid #fff;">Submit Your Tool</a>
+                <a href="tools.html" class="view-all-tools-btn">Browse All Tools</a>
             </div>
-            <p>No spam, just valuable AI goodness.</p>
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Footer Section (Reference Style) -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-col about-col">
+        <div class="container" style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between; align-items: flex-start;">
+            <div class="footer-col about-col" style="flex:1 1 260px; min-width:220px;">
                 <div class="logo">
-                    <img src="assets/logos/artools-ai.svg" alt="ARtools.ai Logo" width="40" height="40">
-                    <span>ARtools.ai</span>
+                    <img src="assets/logos/artools-ai.svg" alt="AI Tools Hub Logo" width="40" height="40">
+                    <span>AI Tools Hub</span>
                 </div>
                 <p>Discover the best AI tools to supercharge your productivity, creativity, and business. Stay ahead with cutting-edge artificial intelligence applications.</p>
                 <div class="social-icons">
@@ -181,17 +180,16 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-col links-col">
+            <div class="footer-col links-col" style="flex:1 1 180px; min-width:160px;">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="tools.html">Browse Tools</a></li>
                     <li><a href="submit.html">Submit Tool</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="#">Blog</a></li>
-                    <!-- Add Tool (Admin) link is intentionally omitted from public navigation -->
                 </ul>
             </div>
-            <div class="footer-col categories-col">
+            <div class="footer-col categories-col" style="flex:1 1 180px; min-width:160px;">
                 <h3>Categories</h3>
                 <ul>
                     <li><a href="#">Writing</a></li>
@@ -200,8 +198,8 @@
                     <li><a href="#">Development</a></li>
                 </ul>
             </div>
-            <div class="footer-col contact-col">
-                <h3>Contact Us</h3>
+            <div class="footer-col contact-col" style="flex:1 1 180px; min-width:160px;">
+                <h3>Contact</h3>
                 <ul>
                     <li><a href="#">hello@artools.ai</a></li>
                     <li><a href="#">Support</a></li>
@@ -211,8 +209,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 ARtools.ai. All rights reserved.</p>
-            <p>Made with ❤️ for the AI community</p>
+            <p>&copy; 2024 AI Tools Hub. All rights reserved.</p>
+            <p>Made with <span style="color:#ec4899;">&#10084;</span> for the AI community</p>
         </div>
     </footer>
 
