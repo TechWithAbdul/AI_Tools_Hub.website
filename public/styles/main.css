@@ -889,6 +889,7 @@ button {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
@@ -958,6 +959,7 @@ button {
 
 @media (max-width: 1024px) {
     .tools-main-content {
+        display: flex;
         flex-direction: column;
         gap: 1.2rem;
         padding: 0 0.5rem;
@@ -967,9 +969,8 @@ button {
         margin-bottom: 1.2rem;
         padding: 1rem 0.6rem;
     }
-    .tools-listing-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 0.8rem;
+    .tools-listing-area {
+        width: 100%;
     }
 }
 
@@ -1026,7 +1027,7 @@ button {
     }
     .tool-card .tool-description {
         font-size: 0.75rem;
-        -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
     .tool-card .view-details-btn {
         padding: 0.3rem 0.8rem;
@@ -1037,21 +1038,17 @@ button {
 /* --- RESTORE TOOLS PAGE LAYOUT & ENHANCE CARD SIZE --- */
 
 .tools-main-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 260px 1fr;
     gap: 2rem;
+    align-items: start;
     padding: 0 1.5rem;
     margin-bottom: 4rem;
 }
 
 .tools-filter-sidebar {
-    flex-shrink: 0;
-    width: 280px;
-    background-color: var(--bg-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 1.5rem;
-    height: fit-content;
-    border: 1px solid var(--border-color);
+    grid-row: 1;
+    grid-column: 1;
 }
 
 .tools-listing-area {
@@ -1074,6 +1071,7 @@ button {
 
 @media (max-width: 1024px) {
     .tools-main-content {
+        display: flex;
         flex-direction: column;
         gap: 1.5rem;
         padding: 0 0.5rem;

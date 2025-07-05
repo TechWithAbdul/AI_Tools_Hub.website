@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${usersHtml}
                     ${detailLink}
                 </div>
+                </div>
             </div>
-        </div>
         `;
     }
 
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div style="margin-bottom:0.7rem;">
                             <span class='tag' style='background:#eef2ff;color:#6366f1;font-size:1rem;font-weight:600;padding:0.4rem 1.1rem;border-radius:0.7rem;margin-right:0.7rem;box-shadow:0 2px 8px rgba(99,102,241,0.1);'>${tool.category || ''}</span>
                             <span class='trending-badge' style='background:linear-gradient(135deg,#f59e0b 0%,#f97316 100%);color:#fff;font-size:0.8rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:0.8rem;box-shadow:0 4px 12px rgba(245,158,11,0.3);animation:pulse 2s infinite;'>🔥 Featured</span>
-                        </div>
+                    </div>
                         <h3 style="font-size:2rem;font-weight:800;margin-bottom:0.7rem;color:#1f2937;background:linear-gradient(135deg,#a855f7 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${tool.name}</h3>
                         <p style="font-size:1.08rem;color:#4b5563;margin-bottom:1.1rem;line-height:1.6;">${tool.description}</p>
                         <div style="display:flex;align-items:center;gap:1.1rem;margin-bottom:1.1rem;flex-wrap:wrap;">
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="flex:1;display:flex;align-items:center;justify-content:center;min-width:0;">
                         <img src="${tool.imageUrl}" alt="${tool.name}" style="width:320px;height:200px;object-fit:cover;border-radius:1.1rem;box-shadow:0 8px 24px rgba(99,102,241,0.15);border:4px solid #eef2ff;margin-left:1.5rem;background:#f3f4f6;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                     </div>
-                </div>
+                    </div>
                 `;
                 cardContainer.innerHTML = cardHtml;
                 const card = cardContainer.firstElementChild;
