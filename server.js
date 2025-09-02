@@ -136,7 +136,7 @@ app.post('/api/subscribe-email', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log(`Access your main website at: http://localhost:${PORT}/index.html`);
-    console.log(`Public 'Submit Tool' page (also linked in navigation): http://localhost:${PORT}/submit-tool.html`);
+    console.log(`Public 'Submit Tool' page (also linked in navigation): http://localhost:${PORT}/submit.html`);
     console.log(`Admin 'Add Tool' page (direct URL, not linked in navigation): http://localhost:${PORT}/add-tool.html`);
     console.log(`Remember to CHANGE 'your_super_secret_admin_key' in server.js for actual use.`);
 });

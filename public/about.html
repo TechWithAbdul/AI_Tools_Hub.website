@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARtools.ai - About Us</title>
+    <title>AI Tools Hub - About Us</title>
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -52,10 +52,8 @@
             <h1 style="font-size:2.7rem;font-weight:700;margin-bottom:1.2rem;">About AI Tools Hub</h1>
             <p style="font-size:1.18rem;max-width:600px;margin:0 auto 2.5rem auto;">We're on a mission to democratize access to AI tools and empower creators, businesses, and innovators worldwide.</p>
             <div class="stats-grid" style="display:flex;justify-content:center;gap:3.5rem;margin-top:2.5rem;">
-                <div class="stat-item"><i class="fas fa-robot" style="font-size:2.1rem;margin-bottom:0.7rem;"></i><br><span>1,000+</span><p>AI Tools Listed</p></div>
-                <div class="stat-item"><i class="fas fa-users" style="font-size:2.1rem;margin-bottom:0.7rem;"></i><br><span>50K+</span><p>Happy Users</p></div>
-                <div class="stat-item"><i class="fas fa-layer-group" style="font-size:2.1rem;margin-bottom:0.7rem;"></i><br><span>8</span><p>Categories</p></div>
-                <div class="stat-item"><i class="fas fa-plus-circle" style="font-size:2.1rem;margin-bottom:0.7rem;"></i><br><span>100+</span><p>Tools Added Monthly</p></div>
+                <div class="stat-item"><i class="fas fa-robot" style="font-size:2.1rem;margin-bottom:0.7rem;"></i><br><span id="aboutToolsCount">...</span><p>AI Tools Listed</p></div>
+                <div class="stat-item"><i class="fas fa-layer-group" style="font-size:2.1rem;margin-bottom:0.7rem;"></i><br><span id="aboutCategoriesCount">...</span><p>Categories</p></div>
             </div>
         </div>
     </section>
@@ -65,10 +63,10 @@
         <div class="container" style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;">
             <div style="flex:1 1 340px;min-width:260px;">
                 <h2 class="section-title" style="text-align:left;">Our Story</h2>
-                <p style="font-size:1.08rem;color:#4b5563;">AI Tools Hub was born from a simple observation: the AI landscape was evolving rapidly, but finding the right tools for specific needs was becoming increasingly difficult.<br><br>In 2020, we set out to create the most comprehensive and user-friendly directory of AI tools, carefully developed to help professionals, creators, and businesses discover the perfect solutions for their unique challenges.<br><br>Today, we've grown into a thriving community of AI enthusiasts, creators, and innovators who share a common vision: making artificial intelligence accessible and beneficial for everyone.</p>
+                <p style="font-size:1.08rem;color:#4b5563;">AI Tools Hub was born from a simple observation: the AI landscape was evolving rapidly, but finding the right tools for specific needs was becoming increasingly difficult.<br><br>We set out to create the most comprehensive and user-friendly directory of AI tools, carefully developed to help professionals, creators, and businesses discover the perfect solutions for their unique challenges.<br><br>Today, we're a thriving community of AI enthusiasts, creators, and innovators who share a common vision: making artificial intelligence accessible and beneficial for everyone.</p>
             </div>
             <div style="flex:1 1 340px;min-width:260px;text-align:center;">
-                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Our Story" style="width:100%;max-width:380px;border-radius:1.1rem;box-shadow:0 4px 24px rgba(99,102,241,0.13);">
+                <img src="assets/about.png" alt="Our Story" style="width:100%;max-width:380px;border-radius:1.1rem;box-shadow:0 4px 24px rgba(99,102,241,0.13);">
             </div>
         </div>
     </section>
@@ -118,59 +116,6 @@
                     <div style="background:#e0e7ff;color:#6366f1;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:0.7rem;font-size:1.5rem;margin-bottom:1.1rem;"><i class="fas fa-user-shield"></i></div>
                     <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.7rem;">User Empowerment</h3>
                     <p style="color:#4b5563;">We believe in democratizing access to AI tools, helping everyone leverage artificial intelligence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Meet Our Team Section -->
-    <section class="section about-content-section" style="background:#fff;">
-        <div class="container">
-            <h2 class="section-title">Meet Our Team</h2>
-            <p class="section-subtitle">The passionate individuals behind AI Tools Hub, dedicated to serving the AI community.</p>
-            <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
-                <div style="flex:1 1 260px;min-width:220px;background:#f9fafb;border-radius:1.1rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);padding:2rem 1.5rem;text-align:center;max-width:320px;">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" style="width:72px;height:72px;object-fit:cover;border-radius:50%;margin-bottom:1rem;">
-                    <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.3rem;">Sarah Johnson</h3>
-                    <p style="color:#6366f1;font-weight:600;margin-bottom:0.2rem;">Founder & CEO</p>
-                    <p style="color:#4b5563;font-size:0.97rem;">AI enthusiast with 10+ years in tech; passionate about democratizing AI tools.</p>
-                </div>
-                <div style="flex:1 1 260px;min-width:220px;background:#f9fafb;border-radius:1.1rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);padding:2rem 1.5rem;text-align:center;max-width:320px;">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mike Chen" style="width:72px;height:72px;object-fit:cover;border-radius:50%;margin-bottom:1rem;">
-                    <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.3rem;">Mike Chen</h3>
-                    <p style="color:#6366f1;font-weight:600;margin-bottom:0.2rem;">Head of Product</p>
-                    <p style="color:#4b5563;font-size:0.97rem;">Product strategist focused on user experience and community building.</p>
-                </div>
-                <div style="flex:1 1 260px;min-width:220px;background:#f9fafb;border-radius:1.1rem;box-shadow:0 2px 8px rgba(99,102,241,0.07);padding:2rem 1.5rem;text-align:center;max-width:320px;">
-                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emma Davis" style="width:72px;height:72px;object-fit:cover;border-radius:50%;margin-bottom:1rem;">
-                    <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.3rem;">Emma Davis</h3>
-                    <p style="color:#6366f1;font-weight:600;margin-bottom:0.2rem;">Community Manager</p>
-                    <p style="color:#4b5563;font-size:0.97rem;">Community advocate; creating content and engaging with users worldwide.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards & Recognition Section -->
-    <section class="section about-content-section" style="background:#fff;">
-        <div class="container">
-            <h2 class="section-title">Awards & Recognition</h2>
-            <p class="section-subtitle">We're honored to be recognized by the AI and tech community.</p>
-            <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
-                <div style="flex:1 1 260px;min-width:220px;background:#f9fafb;border-radius:1.1rem;box-shadow:0 2px 8px rgba(253,224,71,0.13);padding:2rem 1.5rem;text-align:center;max-width:320px;">
-                    <div style="background:#fde047;color:#b45309;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:0.7rem;font-size:1.5rem;margin-bottom:1.1rem;"><i class="fas fa-award"></i></div>
-                    <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.7rem;">Best AI Directory 2024</h3>
-                    <p style="color:#4b5563;">Recognized for excellence as a hub for innovation and community building.</p>
-                </div>
-                <div style="flex:1 1 260px;min-width:220px;background:#f9fafb;border-radius:1.1rem;box-shadow:0 2px 8px rgba(253,224,71,0.13);padding:2rem 1.5rem;text-align:center;max-width:320px;">
-                    <div style="background:#fde047;color:#b45309;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:0.7rem;font-size:1.5rem;margin-bottom:1.1rem;"><i class="fas fa-users"></i></div>
-                    <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.7rem;">Community Choice Award</h3>
-                    <p style="color:#4b5563;">Voted by the community for best AI resource platform.</p>
-                </div>
-                <div style="flex:1 1 260px;min-width:220px;background:#f9fafb;border-radius:1.1rem;box-shadow:0 2px 8px rgba(253,224,71,0.13);padding:2rem 1.5rem;text-align:center;max-width:320px;">
-                    <div style="background:#fde047;color:#b45309;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:0.7rem;font-size:1.5rem;margin-bottom:1.1rem;"><i class="fas fa-rocket"></i></div>
-                    <h3 style="font-size:1.08rem;font-weight:700;margin-bottom:0.7rem;">Startup of the Year</h3>
-                    <p style="color:#4b5563;">Digital Excellence Awards: Recognized as a standout project in the AI ecosystem.</p>
                 </div>
             </div>
         </div>

@@ -82,11 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryBadge = tool.category ? `<span class="category-badge" style="color:#6366f1;font-weight:600;font-size:0.85rem;">${tool.category}</span>` : '';
         const pricingBadge = tool.pricingModel ? `<span class="pricing-badge" style="background:#d1fae5;color:#059669;font-size:0.85rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:0.6rem;margin-left:0.4rem;">${tool.pricingModel}</span>` : '';
         const usersHtml = tool.views ? `<span class="users-count" style="color:#6366f1;font-size:0.85rem;"><i class="fas fa-users"></i> ${tool.views.toLocaleString()} users</span>` : '';
-        const detailLink = `<a href="${tool.websiteUrl}" class="view-details-btn" style="color:#6366f1;font-weight:600;float:right;font-size:0.85rem;">View Details <i class="fas fa-arrow-right"></i></a>`;
+        const detailLink = `<a href="${tool.websiteUrl}" class="view-details-btn" style="color:#fff;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);font-weight:600;float:right;font-size:0.85rem;padding:0.45rem 0.8rem;border-radius:0.55rem;">View Details <i class="fas fa-arrow-right"></i></a>`;
+        
+        // Compute best-guess image source: provided imageUrl, else Clearbit logo of website domain
+        let computedLogo = '';
+        try {
+            if (tool.websiteUrl) {
+                const urlObj = new URL(tool.websiteUrl);
+                const host = urlObj.hostname;
+                computedLogo = `https://logo.clearbit.com/${host}?size=256`;
+            }
+        } catch (_) {}
+        const imageSrc = (tool.imageUrl && tool.imageUrl.trim() !== '') ? tool.imageUrl : (computedLogo || 'assets/logos/artools-ai.svg');
         
         // Card image
         const imageHtml = `<div style="position:relative;width:100%;height:120px;overflow:hidden;border-top-left-radius:0.9rem;border-top-right-radius:0.9rem;background:#f3f4f6;">
-            <img src="${tool.imageUrl}" alt="${tool.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.onerror=null;this.src='https://placehold.co/320x120/cccccc/333333?text=No+Image';" loading="lazy">
+            <img src="${imageSrc}" alt="${tool.name}" style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;transition:transform .2s ease;" onerror="if(this.dataset.fallback!=='1'){this.dataset.fallback='1';try{const u=new URL('${tool.websiteUrl||''}');this.src='https://www.google.com/s2/favicons?domain='+u.hostname+'&sz=128';}catch(e){this.src='assets/logos/artools-ai.svg';}}" loading="lazy">
             ${trendingBadge}${ratingBadge}
         </div>`;
         
@@ -175,8 +186,17 @@ document.addEventListener('DOMContentLoaded', () => {
             function renderCard(idx, direction = 0) {
                 // direction: 0 = instant, 1 = right, -1 = left
                 const tool = editorTools[idx];
+                // Compute best-guess image source for editor card
+                let computedLogo = '';
+                try {
+                    if (tool.websiteUrl) {
+                        const u = new URL(tool.websiteUrl);
+                        computedLogo = `https://logo.clearbit.com/${u.hostname}?size=256`;
+                    }
+                } catch (_) {}
+                const editorImageSrc = (tool.imageUrl && tool.imageUrl.trim() !== '') ? tool.imageUrl : (computedLogo || 'assets/logos/artools-ai.svg');
                 const cardHtml = `
-                <div class="editor-choice-slide editor-choice-flip-anim" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:820px;background:linear-gradient(135deg,#fafbff 0%,#f3e8ff 100%);border-radius:1.5rem;box-shadow:0 8px 32px rgba(99,102,241,0.12);padding:2.2rem 2.5rem;gap:2.5rem;border:2px solid #e5e7eb;">
+                <div class="editor-choice-slide" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:820px;background:linear-gradient(135deg,#fafbff 0%,#f3e8ff 100%);border-radius:1.5rem;box-shadow:0 8px 32px rgba(99,102,241,0.12);padding:2.2rem 2.5rem;gap:2.5rem;border:2px solid #e5e7eb;">
                     <div style="flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0;">
                         <div style="margin-bottom:0.7rem;">
                             <span class='tag' style='background:#eef2ff;color:#6366f1;font-size:1rem;font-weight:600;padding:0.4rem 1.1rem;border-radius:0.7rem;margin-right:0.7rem;box-shadow:0 2px 8px rgba(99,102,241,0.1);'>${tool.category || ''}</span>
@@ -195,15 +215,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div style="flex:1;display:flex;align-items:center;justify-content:center;min-width:0;">
-                        <img src="${tool.imageUrl}" alt="${tool.name}" style="width:320px;height:200px;object-fit:cover;border-radius:1.1rem;box-shadow:0 8px 24px rgba(99,102,241,0.15);border:4px solid #eef2ff;margin-left:1.5rem;background:#f3f4f6;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="${editorImageSrc}" alt="${tool.name}" style="width:320px;height:200px;object-fit:contain;border-radius:1.1rem;box-shadow:0 8px 24px rgba(99,102,241,0.15);border:4px solid #eef2ff;margin-left:1.5rem;background:#fff;" onerror="if(this.dataset.fallback!=='1'){this.dataset.fallback='1';try{const u=new URL('${tool.websiteUrl||''}');this.src='https://www.google.com/s2/favicons?domain='+u.hostname+'&sz=128';}catch(e){this.src='assets/logos/artools-ai.svg';}}">
                     </div>
                     </div>
                 `;
                 cardContainer.innerHTML = cardHtml;
-                const card = cardContainer.firstElementChild;
-                setTimeout(() => {
-                    card.classList.add('editor-choice-flip-in');
-                }, 10);
+                /* Flip animation removed to keep image persistent */
                 Array.from(dots.children).forEach((dot, i) => {
                     dot.style.background = i === idx ? '#6366f1' : '#e5e7eb';
                 });
@@ -683,8 +700,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- Public Submit Tool Page (submit-tool.html) Functionality ---
-    if (window.location.pathname.includes('submit-tool.html')) {
+    // --- Public Submit Tool Page (submit.html) Functionality ---
+    if (false) {
         const publicSubmitToolForm = document.getElementById('publicSubmitToolForm');
 
         if (publicSubmitToolForm) {
@@ -787,3 +804,260 @@ document.addEventListener('DOMContentLoaded', () => {
         setupReadMoreToggles();
     });
 });
+
+// --- Submit Tool Form Interactivity & Validation ---
+(function() {
+    const form = document.getElementById('publicSubmitToolForm');
+    if (!form) return;
+    const submitBtn = document.getElementById('submitToolBtn');
+    const formMessage = document.getElementById('formMessage');
+    const progressBar = document.getElementById('formProgressBar');
+    const imageUrlInput = document.getElementById('submitImageUrl');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    const charCountShortDesc = document.querySelector('.char-count[data-target="submitShortDescription"]');
+    const requiredFields = [
+        'submitToolName',
+        'submitShortDescription',
+        'submitDetailedDescription',
+        'submitWebsiteUrl',
+        'submitToolCategory',
+        'submitPricingModel',
+        'submitYourName',
+        'submitYourEmail'
+    ];
+    // Helper: Show error for a field
+    function showError(fieldId, message) {
+        const errorDiv = document.getElementById('error-' + fieldId);
+        if (errorDiv) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+    }
+    // Helper: Hide error for a field
+    function hideError(fieldId) {
+        const errorDiv = document.getElementById('error-' + fieldId);
+        if (errorDiv) {
+            errorDiv.textContent = '';
+            errorDiv.style.display = 'none';
+        }
+    }
+    // Helper: Validate a single field
+    function validateField(field) {
+        const id = field.id;
+        const value = field.value.trim();
+        if (field.required && !value) {
+            showError(id, 'This field is required.');
+            return false;
+        }
+        if (id === 'submitShortDescription' && value.length > 160) {
+            showError(id, 'Must be 160 characters or less.');
+            return false;
+        }
+        if (id === 'submitWebsiteUrl' || id === 'submitImageUrl') {
+            if (value && !/^https?:\/\//.test(value)) {
+                showError(id, 'Please enter a valid URL (must start with http or https).');
+                return false;
+            }
+        }
+        if (id === 'submitYourEmail') {
+            if (value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) {
+                showError(id, 'Please enter a valid email address.');
+                return false;
+            }
+        }
+        hideError(id);
+        return true;
+    }
+    // Validate all fields
+    function validateForm() {
+        let firstError = null;
+        let valid = true;
+        requiredFields.forEach(id => {
+            const field = document.getElementById(id);
+            if (field && !validateField(field)) {
+                valid = false;
+                if (!firstError) firstError = field;
+            }
+        });
+        return { valid, firstError };
+    }
+    // Live validation
+    requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) {
+            field.addEventListener('input', () => {
+                validateField(field);
+                updateSubmitState();
+            });
+        }
+    });
+    // Character count for short description
+    if (charCountShortDesc) {
+        const input = document.getElementById('submitShortDescription');
+        input.addEventListener('input', () => {
+            charCountShortDesc.textContent = `${input.value.length}/160`;
+        });
+    }
+    // Image preview
+    if (imageUrlInput && imagePreviewContainer) {
+        imageUrlInput.addEventListener('input', () => {
+            const url = imageUrlInput.value.trim();
+            imagePreviewContainer.innerHTML = '';
+            imagePreviewContainer.style.display = 'none';
+            if (/^https?:\/\/.+\.(jpg|jpeg|png|svg|webp|gif)$/i.test(url)) {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Tool Preview';
+                img.onload = () => {
+                    imagePreviewContainer.style.display = 'flex';
+                };
+                img.onerror = () => {
+                    imagePreviewContainer.style.display = 'none';
+                };
+                imagePreviewContainer.appendChild(img);
+            }
+        });
+    }
+    // Info tooltips (handled by CSS :hover/:focus)
+    // Progress bar animation
+    function setProgress(percent) {
+        if (progressBar) {
+            progressBar.style.display = 'block';
+            progressBar.style.width = percent + '%';
+        }
+    }
+    function hideProgress() {
+        if (progressBar) {
+            progressBar.style.display = 'none';
+            progressBar.style.width = '0';
+        }
+    }
+    // Enable/disable submit button
+    function updateSubmitState() {
+        const { valid } = validateForm();
+        if (submitBtn) submitBtn.disabled = !valid;
+    }
+    // Auto-scroll to first error
+    function scrollToFirstError(firstError) {
+        if (firstError && typeof firstError.scrollIntoView === 'function') {
+            setTimeout(() => {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstError.focus();
+            }, 150);
+        }
+    }
+    // Show form message
+    function showFormMessage(type, message) {
+        if (!formMessage) return;
+        formMessage.className = 'form-message ' + type;
+        formMessage.textContent = message;
+        formMessage.style.display = 'block';
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    }
+    // Handle form submit
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const { valid, firstError } = validateForm();
+        if (!valid) {
+            showFormMessage('error', 'Please fix the errors highlighted below.');
+            scrollToFirstError(firstError);
+            return;
+        }
+        setProgress(30);
+        submitBtn.disabled = true;
+        showFormMessage('success', 'Submitting your tool...');
+
+        const formData = new FormData(form);
+        const submittedToolData = {};
+        for (let [key, value] of formData.entries()) {
+            submittedToolData[key] = value;
+        }
+        // Map fields to backend expectations
+        submittedToolData.description = submittedToolData.shortDescription || submittedToolData.detailedDescription || '';
+        if (submittedToolData.features) {
+            submittedToolData.features = submittedToolData.features
+                .split('\n')
+                .map(f => f.trim())
+                .filter(Boolean);
+        } else {
+            submittedToolData.features = [];
+        }
+        if (submittedToolData.tags) {
+            submittedToolData.tags = submittedToolData.tags
+                .split(',')
+                .map(t => t.trim())
+                .filter(Boolean);
+        }
+
+        fetch('/api/submit-tool', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(submittedToolData)
+        })
+        .then(async (response) => {
+            const result = await response.json().catch(() => ({}));
+            if (response.ok) {
+                setProgress(100);
+                showFormMessage('success', result.message || '🎉 Tool submitted successfully! Thank you for sharing with the community.');
+                form.reset();
+                if (imagePreviewContainer) {
+                    imagePreviewContainer.innerHTML = '';
+                    imagePreviewContainer.style.display = 'none';
+                }
+            } else {
+                showFormMessage('error', 'Submission failed: ' + (result.message || 'Unknown error'));
+            }
+        })
+        .catch((err) => {
+            console.error('Error submitting form:', err);
+            showFormMessage('error', 'An error occurred during submission. Ensure the server is running.');
+        })
+        .finally(() => {
+            setTimeout(() => {
+                hideProgress();
+                submitBtn.disabled = false;
+                updateSubmitState();
+            }, 800);
+        });
+    });
+    // Reset form state
+    form.addEventListener('reset', function() {
+        setTimeout(() => {
+            requiredFields.forEach(id => hideError(id));
+            if (formMessage) formMessage.style.display = 'none';
+            if (imagePreviewContainer) {
+                imagePreviewContainer.innerHTML = '';
+                imagePreviewContainer.style.display = 'none';
+            }
+            hideProgress();
+            updateSubmitState();
+        }, 100);
+    });
+    // Initial state
+    updateSubmitState();
+})();
+
+// --- About Page Real-Time Dashboard Update ---
+(function() {
+    if (!window.location.pathname.includes('about.html')) return;
+    const toolsCountEl = document.getElementById('aboutToolsCount');
+    const categoriesCountEl = document.getElementById('aboutCategoriesCount');
+    if (!toolsCountEl || !categoriesCountEl) return;
+    fetch('tools.json')
+        .then(res => res.json())
+        .then(data => {
+            if (!Array.isArray(data)) return;
+            toolsCountEl.textContent = data.length;
+            const categories = new Set();
+            data.forEach(tool => {
+                if (tool.category) categories.add(tool.category);
+            });
+            categoriesCountEl.textContent = categories.size;
+        })
+        .catch(() => {
+            toolsCountEl.textContent = '0';
+            categoriesCountEl.textContent = '0';
+        });
+})();
