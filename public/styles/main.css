@@ -789,11 +789,9 @@ button {
     color: #fff;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom-left-radius: 1.2rem;
-    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     margin-bottom: 1.5rem;
-    background: #8b5cf6;
-    border-radius: 1.1rem;
     box-shadow: 0 4px 24px rgba(99,102,241,0.07);
 }
 
