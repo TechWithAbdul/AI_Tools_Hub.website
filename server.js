@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 // IMPORTANT: For demonstration only. In a real application,
 // this admin key would be stored securely (e.g., in environment variables)
 // and authentication would involve user logins and sessions.
-const ADMIN_SECRET_KEY = process.env.ADMIN_SECRET_KEY || 'your_super_secret_admin_key'; // CHANGE THIS!
+const ADMIN_SECRET_KEY = process.env.ADMIN_SECRET_KEY || 'aradmin'; // CHANGE THIS!
 
 // Initialize optional Postgres pool
 const hasDb = !!process.env.DATABASE_URL;
