@@ -78,10 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderToolCard(tool, options = {}) {
         // Card badges
         const trendingBadge = tool.badge ? `<span class="trending-badge" style="position:absolute;top:0.8rem;right:0.8rem;z-index:2;background:linear-gradient(135deg,#f59e0b 0%,#f97316 100%);color:#fff;font-size:0.75rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:0.6rem;box-shadow:0 2px 8px rgba(245,158,11,0.3);">${tool.badge}</span>` : '';
-        const ratingBadge = tool.rating ? `<span class="rating-badge" style="position:absolute;top:0.8rem;left:0.8rem;z-index:2;background:#fff;color:#222;padding:0.2rem 0.6rem;border-radius:0.6rem;font-weight:600;font-size:0.85rem;box-shadow:0 2px 6px rgba(0,0,0,0.07);"><i class='fas fa-star' style='color:#fbbf24;'></i> ${tool.rating.toFixed(1)}</span>` : '';
+        const _ratingValue = Number(tool.rating);
+        const ratingBadge = Number.isFinite(_ratingValue)
+            ? `<span class="rating-badge" style="position:absolute;top:0.8rem;left:0.8rem;z-index:2;background:#fff;color:#222;padding:0.2rem 0.6rem;border-radius:0.6rem;font-weight:600;font-size:0.85rem;box-shadow:0 2px 6px rgba(0,0,0,0.07);"><i class='fas fa-star' style='color:#fbbf24;'></i> ${_ratingValue.toFixed(1)}</span>`
+            : '';
         const categoryBadge = tool.category ? `<span class="category-badge" style="color:#6366f1;font-weight:600;font-size:0.85rem;">${tool.category}</span>` : '';
         const pricingBadge = tool.pricingModel ? `<span class="pricing-badge" style="background:#d1fae5;color:#059669;font-size:0.85rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:0.6rem;margin-left:0.4rem;">${tool.pricingModel}</span>` : '';
-        const usersHtml = tool.views ? `<span class="users-count" style="color:#6366f1;font-size:0.85rem;"><i class="fas fa-users"></i> ${tool.views.toLocaleString()} users</span>` : '';
+        const __views = Number(tool.views);
+        const usersHtml = Number.isFinite(__views) ? `<span class="users-count" style="color:#6366f1;font-size:0.85rem;"><i class="fas fa-users"></i> ${__views.toLocaleString()} users</span>` : '';
         const detailLink = `<a href="https://www.google.com/search?q=${encodeURIComponent(tool.name + ' ' + (tool.category || 'AI tool'))}" target="_blank" rel="noopener" class="view-details-btn" style="color:#fff;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);font-weight:600;float:right;font-size:0.85rem;padding:0.45rem 0.8rem;border-radius:0.55rem;">View Details <i class="fas fa-arrow-right"></i></a>`;
         
         // Compute best-guess image source: provided imageUrl, else Clearbit logo of website domain
@@ -205,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 style="font-size:2rem;font-weight:800;margin-bottom:0.7rem;color:#1f2937;background:linear-gradient(135deg,#a855f7 0%,#6366f1 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${tool.name}</h3>
                         <p style="font-size:1.08rem;color:#4b5563;margin-bottom:1.1rem;line-height:1.6;">${tool.description}</p>
                         <div style="display:flex;align-items:center;gap:1.1rem;margin-bottom:1.1rem;flex-wrap:wrap;">
-                            <span style="color:#fbbf24;font-size:1.1rem;font-weight:700;"><i class='fas fa-star'></i> ${tool.rating ? tool.rating.toFixed(1) : '4.5'}</span>
-                            <span style="color:#6b7280;font-size:1rem;"><i class='fas fa-users'></i> ${tool.views ? tool.views.toLocaleString() + ' users' : '1K+ users'}</span>
+                            <span style="color:#fbbf24;font-size:1.1rem;font-weight:700;"><i class='fas fa-star'></i> ${Number.isFinite(Number(tool.rating)) ? Number(tool.rating).toFixed(1) : '4.5'}</span>
+                            <span style="color:#6b7280;font-size:1rem;"><i class='fas fa-users'></i> ${Number.isFinite(Number(tool.views)) ? Number(tool.views).toLocaleString() + ' users' : '1K+ users'}</span>
                             ${tool.pricingModel ? `<span class='tag' style='background:#d1fae5;color:#059669;font-size:1rem;font-weight:600;padding:0.3rem 1rem;border-radius:0.7rem;box-shadow:0 2px 8px rgba(5,150,105,0.1);'>${tool.pricingModel}</span>` : ''}
                         </div>
                         <div style="display:flex;gap:1.1rem;flex-wrap:wrap;">
