@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchToolsData() {
         try {
-            const response = await fetch('tools.json');
+            const response = await fetch('/api/tools');
             if (!response.ok) {
                 if (response.status === 404 || response.headers.get('content-length') === '0') {
                     console.warn('tools.json not found or is empty. Initializing with an empty tool list.');
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryBadge = tool.category ? `<span class="category-badge" style="color:#6366f1;font-weight:600;font-size:0.85rem;">${tool.category}</span>` : '';
         const pricingBadge = tool.pricingModel ? `<span class="pricing-badge" style="background:#d1fae5;color:#059669;font-size:0.85rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:0.6rem;margin-left:0.4rem;">${tool.pricingModel}</span>` : '';
         const usersHtml = tool.views ? `<span class="users-count" style="color:#6366f1;font-size:0.85rem;"><i class="fas fa-users"></i> ${tool.views.toLocaleString()} users</span>` : '';
-        const detailLink = `<a href="${tool.websiteUrl}" class="view-details-btn" style="color:#fff;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);font-weight:600;float:right;font-size:0.85rem;padding:0.45rem 0.8rem;border-radius:0.55rem;">View Details <i class="fas fa-arrow-right"></i></a>`;
+        const detailLink = `<a href="https://www.google.com/search?q=${encodeURIComponent(tool.name + ' ' + (tool.category || 'AI tool'))}" target="_blank" rel="noopener" class="view-details-btn" style="color:#fff;background:linear-gradient(90deg,#a855f7 0%,#6366f1 100%);font-weight:600;float:right;font-size:0.85rem;padding:0.45rem 0.8rem;border-radius:0.55rem;">View Details <i class="fas fa-arrow-right"></i></a>`;
         
         // Compute best-guess image source: provided imageUrl, else Clearbit logo of website domain
         let computedLogo = '';
@@ -1045,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toolsCountEl = document.getElementById('aboutToolsCount');
     const categoriesCountEl = document.getElementById('aboutCategoriesCount');
     if (!toolsCountEl || !categoriesCountEl) return;
-    fetch('tools.json')
+    fetch('/api/tools')
         .then(res => res.json())
         .then(data => {
             if (!Array.isArray(data)) return;
