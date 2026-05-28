@@ -3,8 +3,6 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
-// Add Postgres client (optional) when DATABASE_URL is provided
-const { Pool } = require('pg');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,16 +11,6 @@ const PORT = process.env.PORT || 3000;
 // this admin key would be stored securely (e.g., in environment variables)
 // and authentication would involve user logins and sessions.
 const ADMIN_SECRET_KEY = process.env.ADMIN_SECRET_KEY || 'aradmin'; // CHANGE THIS!
-
-// Initialize optional Postgres pool
-const hasDb = !!process.env.DATABASE_URL;
-let pool = null;
-if (hasDb) {
-    pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: process.env.PGSSL === 'disable' ? false : { rejectUnauthorized: false }
-    });
-}
 
 // Middleware to parse JSON bodies from incoming requests
 app.use(bodyParser.json());
@@ -66,19 +54,9 @@ const writeJsonFile = (filePath, data, res) => {
 // Endpoint to retrieve tools (DB if available, else JSON)
 app.get('/api/tools', async (req, res) => {
     try {
-        if (hasDb && pool) {
-            const { rows } = await pool.query(`
-                SELECT id, name, category, description, website_url AS "websiteUrl", image_url AS "imageUrl",
-                       features, pricing_model AS "pricingModel", rating, views, badge, created_at AS "createdAt"
-                FROM tools
-                ORDER BY created_at DESC
-            `);
-            return res.json(rows);
-        } else {
-            const toolsFilePath = path.join(__dirname, 'public', 'tools.json');
-            const tools = readJsonFile(toolsFilePath);
-            return res.json(tools);
-        }
+        const toolsFilePath = path.join(__dirname, 'public', 'tools.json');
+        const tools = readJsonFile(toolsFilePath);
+        return res.json(tools);
     } catch (err) {
         console.error('Error fetching tools:', err);
         return res.status(500).json({ message: 'Failed to fetch tools.' });
@@ -116,32 +94,11 @@ app.post('/api/add-tool', async (req, res) => {
     newTool.id = newTool.id || `${newTool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${Date.now()}`;
 
     try {
-        if (hasDb && pool) {
-            await pool.query(
-                `INSERT INTO tools (id, name, category, description, website_url, image_url, features, pricing_model, rating, views, badge)
-                 VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-                [
-                    newTool.id,
-                    newTool.name,
-                    newTool.category,
-                    newTool.description,
-                    newTool.websiteUrl,
-                    newTool.imageUrl || null,
-                    Array.isArray(newTool.features) ? JSON.stringify(newTool.features) : JSON.stringify([]),
-                    newTool.pricingModel || null,
-                    typeof newTool.rating === 'number' ? newTool.rating : 0,
-                    typeof newTool.views === 'number' ? newTool.views : 0,
-                    newTool.badge || null
-                ]
-            );
-            return res.status(201).json({ message: 'Tool added successfully!', tool: newTool });
-        } else {
-            const toolsFilePath = path.join(__dirname, 'public', 'tools.json');
-            let tools = readJsonFile(toolsFilePath);
-            tools.push(newTool);
-            writeJsonFile(toolsFilePath, tools, res);
-            return res.status(201).json({ message: 'Tool added successfully!', tool: newTool });
-        }
+        const toolsFilePath = path.join(__dirname, 'public', 'tools.json');
+        let tools = readJsonFile(toolsFilePath);
+        tools.push(newTool);
+        writeJsonFile(toolsFilePath, tools, res);
+        return res.status(201).json({ message: 'Tool added successfully!', tool: newTool });
     } catch (err) {
         console.error('Error adding tool:', err);
         return res.status(500).json({ message: 'Failed to add tool.' });
@@ -163,33 +120,11 @@ app.post('/api/submit-tool', async (req, res) => {
     submittedTool.status = 'pending'; // Default status for review
 
     try {
-        if (hasDb && pool) {
-            await pool.query(
-                `INSERT INTO submitted_tools (id, name, category, description, website_url, image_url, tags, features, your_name, your_email, status, submission_date)
-                 VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
-                [
-                    submittedTool.id,
-                    submittedTool.name,
-                    submittedTool.category,
-                    submittedTool.description,
-                    submittedTool.websiteUrl,
-                    submittedTool.imageUrl || null,
-                    submittedTool.tags ? JSON.stringify(submittedTool.tags) : JSON.stringify([]),
-                    submittedTool.features ? JSON.stringify(submittedTool.features) : JSON.stringify([]),
-                    submittedTool.yourName || null,
-                    submittedTool.yourEmail || null,
-                    submittedTool.status,
-                    submittedTool.submissionDate
-                ]
-            );
-            return res.status(201).json({ message: 'Tool suggestion submitted successfully! It will be reviewed by our team.', submission: submittedTool });
-        } else {
-            const submittedToolsFilePath = path.join(__dirname, 'public', 'submitted-tools.json'); // Separate file for public submissions
-            let submittedTools = readJsonFile(submittedToolsFilePath);
-            submittedTools.push(submittedTool);
-            writeJsonFile(submittedToolsFilePath, submittedTools, res);
-            return res.status(201).json({ message: 'Tool suggestion submitted successfully! It will be reviewed by our team.', submission: submittedTool });
-        }
+        const submittedToolsFilePath = path.join(__dirname, 'public', 'submitted-tools.json'); // Separate file for public submissions
+        let submittedTools = readJsonFile(submittedToolsFilePath);
+        submittedTools.push(submittedTool);
+        writeJsonFile(submittedToolsFilePath, submittedTools, res);
+        return res.status(201).json({ message: 'Tool suggestion submitted successfully! It will be reviewed by our team.', submission: submittedTool });
     } catch (err) {
         console.error('Error submitting tool:', err);
         return res.status(500).json({ message: 'Failed to submit tool.' });
@@ -206,25 +141,16 @@ app.post('/api/subscribe-email', async (req, res) => {
     }
 
     try {
-        if (hasDb && pool) {
-            await pool.query(
-                `INSERT INTO subscribers (email) VALUES ($1)
-                 ON CONFLICT (email) DO NOTHING`,
-                [email]
-            );
-            return res.status(200).json({ message: 'Successfully subscribed to the newsletter!' });
-        } else {
-            const subscribersFilePath = path.join(__dirname, 'public', 'subscribers.json');
-            let subscribers = readJsonFile(subscribersFilePath);
+        const subscribersFilePath = path.join(__dirname, 'public', 'subscribers.json');
+        let subscribers = readJsonFile(subscribersFilePath);
 
-            if (subscribers.includes(email)) {
-                return res.status(409).json({ message: 'This email is already subscribed.' });
-            }
-
-            subscribers.push(email);
-            writeJsonFile(subscribersFilePath, subscribers, res);
-            return res.status(200).json({ message: 'Successfully subscribed to the newsletter!' });
+        if (subscribers.includes(email)) {
+            return res.status(409).json({ message: 'This email is already subscribed.' });
         }
+
+        subscribers.push(email);
+        writeJsonFile(subscribersFilePath, subscribers, res);
+        return res.status(200).json({ message: 'Successfully subscribed to the newsletter!' });
     } catch (err) {
         console.error('Error subscribing email:', err);
         return res.status(500).json({ message: 'Failed to subscribe email.' });
@@ -243,9 +169,5 @@ app.listen(PORT, () => {
     console.log(`Public 'Submit Tool' page (also linked in navigation): http://localhost:${PORT}/submit.html`);
     console.log(`Admin 'Add Tool' page (direct URL, not linked in navigation): http://localhost:${PORT}/add-tool.html`);
     console.log(`Remember to CHANGE 'your_super_secret_admin_key' in server.js for actual use.`);
-    if (hasDb) {
-        console.log('Database connection detected. Using Postgres for data operations.');
-    } else {
-        console.log('No DATABASE_URL found. Falling back to JSON files for data storage.');
-    }
+    console.log('Using JSON files for data storage.');
 });

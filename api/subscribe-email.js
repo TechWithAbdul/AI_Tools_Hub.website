@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const { getPool } = require('./_db');
 
 function readJsonFile(filePath, def = []) {
   try {
@@ -27,22 +26,16 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const pool = getPool();
   try {
-    if (pool) {
-      await pool.query(`INSERT INTO subscribers (email) VALUES ($1) ON CONFLICT (email) DO NOTHING`, [email]);
-      res.status(200).json({ message: 'Successfully subscribed to the newsletter!' });
-    } else {
-      const filePath = path.join(process.cwd(), 'public', 'subscribers.json');
-      const arr = readJsonFile(filePath);
-      if (arr.includes(email)) {
-        res.status(409).json({ message: 'This email is already subscribed.' });
-        return;
-      }
-      arr.push(email);
-      writeJsonFile(filePath, arr);
-      res.status(200).json({ message: 'Successfully subscribed to the newsletter!' });
+    const filePath = path.join(process.cwd(), 'public', 'subscribers.json');
+    const arr = readJsonFile(filePath);
+    if (arr.includes(email)) {
+      res.status(409).json({ message: 'This email is already subscribed.' });
+      return;
     }
+    arr.push(email);
+    writeJsonFile(filePath, arr);
+    res.status(200).json({ message: 'Successfully subscribed to the newsletter!' });
   } catch (err) {
     console.error('subscribe-email api error:', err);
     res.status(500).json({ message: 'Failed to subscribe email.' });

@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const { getPool } = require('./_db');
 
 function readJsonFile(filePath, def = []) {
   try {
@@ -30,35 +29,12 @@ module.exports = async (req, res) => {
   submission.submissionDate = new Date().toISOString();
   submission.status = 'pending';
 
-  const pool = getPool();
   try {
-    if (pool) {
-      await pool.query(
-        `INSERT INTO submitted_tools (id, name, category, description, website_url, image_url, tags, features, your_name, your_email, status, submission_date)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
-        [
-          submission.id,
-          submission.name,
-          submission.category,
-          submission.description,
-          submission.websiteUrl,
-          submission.imageUrl || null,
-          submission.tags ? JSON.stringify(submission.tags) : JSON.stringify([]),
-          submission.features ? JSON.stringify(submission.features) : JSON.stringify([]),
-          submission.yourName || null,
-          submission.yourEmail || null,
-          submission.status,
-          submission.submissionDate
-        ]
-      );
-      res.status(201).json({ message: 'Tool suggestion submitted successfully! It will be reviewed by our team.', submission });
-    } else {
-      const filePath = path.join(process.cwd(), 'public', 'submitted-tools.json');
-      const arr = readJsonFile(filePath);
-      arr.push(submission);
-      writeJsonFile(filePath, arr);
-      res.status(201).json({ message: 'Tool suggestion submitted successfully! It will be reviewed by our team.', submission });
-    }
+    const filePath = path.join(process.cwd(), 'public', 'submitted-tools.json');
+    const arr = readJsonFile(filePath);
+    arr.push(submission);
+    writeJsonFile(filePath, arr);
+    res.status(201).json({ message: 'Tool suggestion submitted successfully! It will be reviewed by our team.', submission });
   } catch (err) {
     console.error('submit-tool api error:', err);
     res.status(500).json({ message: 'Failed to submit tool.' });
